@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "jsx": "react",
+    // Don't emit; allow Babel to transform files.
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2017",
+      "dom",
+      "es5"
+    ],
+    "esModuleInterop": true,
+  },
+  "include": [
+    "src"
+  ]
+}
