@@ -28,6 +28,22 @@ module.exports = {
         test: /\.tsx?$/, 
         use: ['babel-loader'], 
         include: path.resolve('src') 
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        include: path.resolve('src') 
+      },
+      {
+        test: /\.(png|jpg|gif|woff|eot|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
