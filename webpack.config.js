@@ -35,6 +35,11 @@ module.exports = {
         include: path.resolve('src') 
       },
       {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        include: path.resolve('src') 
+      },
+      {
         test: /\.(png|jpg|gif|woff|eot|svg)$/,
         use: [
           {

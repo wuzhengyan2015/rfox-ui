@@ -1,0 +1,25 @@
+.rfox-tabs__nav {
+  border-bottom: 1px solid #D4D4D5;
+  border-radius: 4px 4px 0 0;
+}
+
+.rfox-tabs__nav-link {
+  display: inline-block;
+  padding: 14px 20px;
+  margin-bottom: -1px;
+  color: rgba(0, 0, 0, 0.95);
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+}
+
+.rfox-tabs__nav-link__active {
+  border: 1px solid #D4D4D5;
+  border-bottom-color: white;
+}
+
+.rfox-tabs__content {
+  padding: 14px;
+  border: 1px solid #D4D4D5;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
