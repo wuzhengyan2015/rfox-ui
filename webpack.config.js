@@ -23,32 +23,37 @@ module.exports = {
   ],
 
   module: {
-    rules: [
-      { 
-        test: /\.tsx?$/, 
-        use: ['babel-loader'], 
-        include: path.resolve('src') 
+    rules: [{
+        test: /\.tsx?$/,
+        enforce: 'pre',
+        use: [{
+          loader: 'tslint-loader',
+          options: { /* Loader options go here */ }
+        }]
+      },
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader'],
+        include: path.resolve('src')
       },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-        include: path.resolve('src') 
+        include: path.resolve('src')
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        include: path.resolve('src') 
+        include: path.resolve('src')
       },
       {
         test: /\.(png|jpg|gif|woff|eot|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192
-            }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192
           }
-        ]
+        }]
       }
     ]
   },

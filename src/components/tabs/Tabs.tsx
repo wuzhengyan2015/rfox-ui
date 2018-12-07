@@ -24,7 +24,7 @@ class Tabs extends Component<ITabsProps, ITabsState> {
     })
   }
 
-  render () {
+  render() {
     const { defaultActiveKey, children } = this.props
     const { activeKey = defaultActiveKey } = this.state
     return (
@@ -36,7 +36,13 @@ class Tabs extends Component<ITabsProps, ITabsState> {
               const linkClass = classNames('rfox-tabs__nav-link', { 
                 'rfox-tabs__nav-link__active': activeKey === key
               })
-              return <a className={linkClass} data-key={key} key={key} onClick={this.handleTabClick}>{child.props.tab}</a>
+              return <a 
+                className={linkClass} 
+                data-key={key} 
+                key={key}
+                onClick={this.handleTabClick}>
+                  {child.props.tab}
+                </a>
             })
           }
         </div>
