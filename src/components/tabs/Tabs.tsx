@@ -46,10 +46,10 @@ class Tabs extends Component<ITabsProps, ITabsState> {
             })
           }
         </div>
-        <div className="rfox-tabs__content">
+        <div className="rfox-tabs__contents">
           {
             React.Children.map(children, (child: ReactElement<any>) => {
-              return activeKey === child.key ? <div>{child}</div> : null
+              return activeKey === child.key ? <div className="rfox-tabs__content">{child}</div> : null
             })
           }
         </div>
