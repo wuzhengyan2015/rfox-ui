@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --open --mode=development",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "check-types": "tsc"
   },
   "repository": {
     "type": "git",
