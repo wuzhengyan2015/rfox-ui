@@ -16,7 +16,9 @@
         "semicolon": false,
         "member-access": false,
         "trailing-comma": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "no-empty": false,
+        "member-ordering": false
     },
     "rulesDirectory": []
 }
