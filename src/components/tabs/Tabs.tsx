@@ -68,7 +68,7 @@ class Tabs extends Component<ITabsProps, ITabsState> {
       <div className="rfox-tabs">
         <div className="rfox-tabs__nav">
           {
-            React.Children.map(children, (child: ReactElement<any>, index: number) => {
+            React.Children.map(children as React.ReactNode, (child: ReactElement<any>, index: number) => {
               const key = child.key || index.toString()
               if (!isMatch && index === 0) {
                 activeKey = (key as string)
@@ -88,8 +88,9 @@ class Tabs extends Component<ITabsProps, ITabsState> {
         </div>
         <div className="rfox-tabs__contents">
           {
-            React.Children.map(children, (child: ReactElement<any>) => {
-              return activeKey === child.key ? <div className="rfox-tabs__content">{child}</div> : null
+            React.Children.map(children, (child: ReactElement<any>, index: number) => {
+              const key = child.key || index.toString()
+              return activeKey === key ? <div className="rfox-tabs__content">{child}</div> : null
             })
           }
         </div>
