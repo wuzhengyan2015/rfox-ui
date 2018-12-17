@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import './assets/styles/reset.css'
 import './assets/styles/global.css'
 import Tabs from './components/tabs/index'
+import Icon from './components/icon/index'
 
 const TabPane = Tabs.TabPane;
 
@@ -13,6 +14,7 @@ ReactDOM.render(
       <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
       <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
     </Tabs>
+    <Icon type="star"/>
   </div>,
   document.getElementById('root')
 )
