@@ -1,7 +1,6 @@
 import React, { Component, ReactElement } from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import TabPane from './TabPane'
-import { lstat } from 'fs';
 
 export interface ITabsProps {
   activeKey?: string;
@@ -73,7 +72,7 @@ class Tabs extends Component<ITabsProps, ITabsState> {
               if (!isMatch && index === 0) {
                 activeKey = (key as string)
               }
-              const linkClass = classNames('rfox-tabs__nav-link', {
+              const linkClass = cx('rfox-tabs__nav-link', {
                 'rfox-tabs__nav-link__active': activeKey === key
               })
               return <a 
