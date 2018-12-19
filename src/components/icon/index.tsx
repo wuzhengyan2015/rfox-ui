@@ -1,6 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import './styles/iconfont/iconfont.css'
+import './styles/index.scss'
 
 export interface IIconProps {
   type: string;
@@ -13,23 +14,26 @@ export interface IIconProps {
 }
 
 const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
-  const { type, size, color, style, className } = props
+  const { 
+    type, size, color, style, className, title, spin
+   } = props
   const cssStyle = {
-    fontSize: size + 'px',
     color,
+    fontSize: `${parseInt(size as string)}px`,
     ...style
   }
   return (
     <i 
-      className={cx('icon', 'iconfont', type, {className: !!className})}
+      title={title}
+      className={cx('icon', 'iconfont', type, {className: !!className, spin})}
       style={cssStyle}
     ></i>
   )
 }
 
 Icon.defaultProps = {
+  color: '#555',
   size: 24,
-  color: '#555'
 }
 
 export default Icon

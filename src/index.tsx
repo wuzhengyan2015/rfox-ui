@@ -14,7 +14,7 @@ ReactDOM.render(
       <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
       <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
     </Tabs>
-    <Icon type="icon-fillstar"/>
+    <Icon type="icon-fillstar" size="28px"/>
   </div>,
   document.getElementById('root')
 )
