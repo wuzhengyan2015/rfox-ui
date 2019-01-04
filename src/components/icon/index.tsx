@@ -32,7 +32,6 @@ const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
 }
 
 Icon.defaultProps = {
-  color: '#555',
   size: 24,
 }
 

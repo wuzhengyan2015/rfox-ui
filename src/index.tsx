@@ -4,6 +4,7 @@ import './assets/styles/reset.css'
 import './assets/styles/global.css'
 import Tabs from './components/tabs/index'
 import Icon from './components/icon/index'
+import Rate from './components/rate/index'
 
 const TabPane = Tabs.TabPane;
 
@@ -14,7 +15,8 @@ ReactDOM.render(
       <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
       <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
     </Tabs>
-    <Icon type="icon-fillstar" size="28px"/>
+    <Icon type="icon-fillstar" size="28px" color="#f0f"/>
+    <Rate />
   </div>,
   document.getElementById('root')
 )

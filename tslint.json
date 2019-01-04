@@ -18,7 +18,8 @@
         "trailing-comma": false,
         "ordered-imports": false,
         "no-empty": false,
-        "member-ordering": false
+        "member-ordering": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }

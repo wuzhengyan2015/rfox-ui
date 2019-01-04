@@ -1,0 +1,22 @@
+.rfox-rate__list {
+    display: flex
+}
+
+.rfox-rate_item {
+    margin-right: 4px;
+    cursor: pointer;
+    &:last-child {
+        margin-right: 0
+    }
+    i {
+        display: inline-block;
+        color: #e8e8e8;
+        transition: transform 0.15s linear;
+    }
+    &:hover {
+        i {
+            color: #fadb14;
+            transform: scale(1.1);
+        }
+    }
+}
