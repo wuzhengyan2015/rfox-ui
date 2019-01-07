@@ -25,7 +25,7 @@ const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
   return (
     <i 
       title={title}
-      className={cx('icon', 'iconfont', type, {className: !!className, spin})}
+      className={cx('icon', 'iconfont', type, {[className]: !!className, spin})}
       style={cssStyle}
     ></i>
   )

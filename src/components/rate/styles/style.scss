@@ -3,17 +3,21 @@
 }
 
 .rfox-rate_item {
-    margin-right: 4px;
+    padding: 0 2px;
     cursor: pointer;
+    &:first-child {
+        padding-left: 0
+    }
     &:last-child {
-        margin-right: 0
+        padding-right: 0
     }
     i {
         display: inline-block;
         color: #e8e8e8;
         transition: transform 0.15s linear;
     }
-    &:hover {
+    &:hover,
+    &.rfox-rate_item--hover {
         i {
             color: #fadb14;
             transform: scale(1.1);

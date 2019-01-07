@@ -28,7 +28,7 @@ class Tabs extends Component<ITabsProps, ITabsState> {
 
   static getDerivedStateFromProps(props, state) {
     const activeKeyProps = props.activeKey
-    if (activeKeyProps !== state.prevActiveKeyProp) {
+    if (activeKeyProps && activeKeyProps !== state.prevActiveKeyProp) {
       return {
         activeKey: activeKeyProps,
         prevActiveKeyProp: activeKeyProps
