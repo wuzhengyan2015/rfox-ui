@@ -16,7 +16,7 @@ ReactDOM.render(
       <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
     </Tabs>
     <Icon type="icon-fillstar" size="28px" color="#f0f"/>
-    <Rate value={3}/>
+    <Rate value={3} allClear/>
   </div>,
   document.getElementById('root')
 )

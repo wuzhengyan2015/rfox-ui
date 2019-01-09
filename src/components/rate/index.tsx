@@ -53,12 +53,16 @@ class Rate extends Component<IRateProps, IRateState> {
     return null;
   }
   handleItemClick = (event) => {
-    const { onChange, disabled } = this.props
+    const { onChange, disabled, allClear } = this.props
+    const { value: currentValue } = this.state
     if (disabled) {
       return
     }
     const target = event.currentTarget
-    const value = parseInt(target.dataset.index) + 1
+    let value = parseInt(target.dataset.index) + 1
+    if (allClear && value === currentValue) {
+      value = undefined
+    }
     this.setState({
       value
     })
