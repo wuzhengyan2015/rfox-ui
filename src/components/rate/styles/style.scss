@@ -1,3 +1,8 @@
+.rfox-rate {
+    display: inline-block;
+    outline: none
+}
+
 .rfox-rate__list {
     display: flex
 }
@@ -16,11 +21,13 @@
         color: #e8e8e8;
         transition: transform 0.15s linear;
     }
-    &:hover,
     &.rfox-rate_item--hover {
         i {
             color: #fadb14;
             transform: scale(1.1);
         }
+    }
+    &.rfox-rate_item--disabled {
+        cursor: default;
     }
 }

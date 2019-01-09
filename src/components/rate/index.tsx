@@ -44,46 +44,71 @@ class Rate extends Component<IRateProps, IRateState> {
   static getDerivedStateFromProps(props, state) {
     const { value: valueProps } = props
     const { prevValue } = state
-    if (valueProps && valueProps !== prevValue) {
+    if (valueProps != null && valueProps !== prevValue) {
       return {
         value: valueProps,
-        preValue: valueProps
+        prevValue: valueProps
       }
     }
     return null;
   }
   handleItemClick = (event) => {
+    const { onChange, disabled } = this.props
+    if (disabled) {
+      return
+    }
     const target = event.currentTarget
-    const index = parseInt(target.dataset.index)
+    const value = parseInt(target.dataset.index) + 1
     this.setState({
-      value: index + 1
+      value
     })
+    onChange(value)
   }
   handleMouseOut = () => {
+    const { disabled } = this.props
+    if (disabled) {
+      return
+    }
     this.setState({
       hoverIndex: undefined
     })
   }
   handleOver = (event) => {
+    const { onHoverChange, disabled } = this.props
+    if (disabled) {
+      return
+    }
     const target = event.currentTarget
-    const index = parseInt(target.dataset.index)
+    const hoverIndex = parseInt(target.dataset.index) + 1
     this.setState({
-      hoverIndex: index + 1
+      hoverIndex
     })
+    onHoverChange(hoverIndex)
+  }
+  handleRateFocus = () => {
+    const { onFocus } = this.props
+    onFocus()
+  }
+  handleRateBlur = () => {
+    const { onBlur } = this.props
+    onBlur()
   }
   render() {
-    const { character, count } = this.props
+    const { character, count, disabled } = this.props
     const { value, hoverIndex } = this.state
     return (
-      <div className="rfox-rate">
+      <div 
+        className="rfox-rate"
+        tabIndex={0}
+        onFocus={this.handleRateFocus} 
+        onBlur={this.handleRateBlur}>
         <ul className="rfox-rate__list">
           {
             Array.apply(null, Array(count)).map((_, index) => {
-                console.log(value,  index)
                 const isActive = (hoverIndex && hoverIndex > index) || (value && value > index)
                 return (
                   <li 
-                    className={cx('rfox-rate_item', {'rfox-rate_item--hover ': isActive})}
+                    className={cx('rfox-rate_item', {'rfox-rate_item--hover ': isActive, 'rfox-rate_item--disabled': disabled})}
                     data-index={index} 
                     key={index}
                     onMouseOver={this.handleOver}
