@@ -11,6 +11,7 @@ export interface IRateProps {
   defaultValue?: number;
   value?: number;
   disabled?: boolean;
+  activeColor?: string;
   onBlur?: () => {};
   onChange?: (value: number) => {};
   onFocus?: () => {};
@@ -19,6 +20,7 @@ export interface IRateProps {
 
 export interface IRateState {
   value: number;
+  prevValue: number;
   hoverIndex: number;
 }
 
@@ -31,15 +33,19 @@ class Rate extends Component<IRateProps, IRateState> {
     defaultValue: 0,
     disabled: false,
     value: 0,
+    activeColor: '#fadb14',
     onBlur: () => {},
     onChange: (value) => {},
     onFocus: () => {},
     onHoverChange: (value) => {},
   }
-  state = {
-    value: undefined,
-    prevValue: undefined,
-    hoverIndex: undefined
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: props.defaultValue,
+      prevValue: 0,
+      hoverIndex: 0
+    }
   }
   static getDerivedStateFromProps(props, state) {
     const { value: valueProps } = props
@@ -98,7 +104,7 @@ class Rate extends Component<IRateProps, IRateState> {
     onBlur()
   }
   render() {
-    const { character, count, disabled } = this.props
+    const { character, count, disabled, className, activeColor } = this.props
     const { value, hoverIndex } = this.state
     return (
       <div 
@@ -110,9 +116,15 @@ class Rate extends Component<IRateProps, IRateState> {
           {
             Array.apply(null, Array(count)).map((_, index) => {
                 const isActive = (hoverIndex && hoverIndex > index) || (value && value > index)
+                const style = isActive ? {color: activeColor} : {}
                 return (
                   <li 
-                    className={cx('rfox-rate_item', {'rfox-rate_item--hover ': isActive, 'rfox-rate_item--disabled': disabled})}
+                    className={cx('rfox-rate_item', {
+                      'rfox-rate_item--hover ': isActive, 
+                      'rfox-rate_item--disabled': disabled,
+                      [className]: !!className
+                    })}
+                    style={style}
                     data-index={index} 
                     key={index}
                     onMouseOver={this.handleOver}
