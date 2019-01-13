@@ -9,6 +9,7 @@
 
 .rfox-rate_item {
     padding: 0 2px;
+    color: #e8e8e8;
     cursor: pointer;
     &:first-child {
         padding-left: 0
@@ -18,12 +19,11 @@
     }
     i {
         display: inline-block;
-        color: #e8e8e8;
         transition: transform 0.15s linear;
     }
     &.rfox-rate_item--hover {
+        color: #fadb14;
         i {
-            color: #fadb14;
             transform: scale(1.1);
         }
     }
