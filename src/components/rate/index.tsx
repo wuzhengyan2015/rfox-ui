@@ -40,7 +40,7 @@ class Rate extends Component<IRateProps, IRateState> {
     onHoverChange: (value) => {},
   }
   state = {
-    value: this.props.defaultValue || this.props.value,
+    value: this.props.value || this.props.defaultValue,
     prevValue: this.props.value,
     hoverIndex: undefined
   }
