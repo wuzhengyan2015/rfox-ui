@@ -37,14 +37,14 @@ class Rate extends Component<IRateProps, IRateState> {
     onHoverChange: (value) => {},
   }
   state = {
-    value: undefined,
-    prevValue: undefined,
+    value: this.props.value,
+    prevValue: this.props.value,
     hoverIndex: undefined
   }
   static getDerivedStateFromProps(props, state) {
     const { value: valueProps } = props
     const { prevValue } = state
-    if (valueProps != null && valueProps !== prevValue) {
+    if (valueProps !== prevValue) {
       return {
         value: valueProps,
         prevValue: valueProps

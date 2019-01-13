@@ -22,13 +22,13 @@ class Tabs extends Component<ITabsProps, ITabsState> {
   }
 
   state = {
-    activeKey: this.props.defaultActiveKey,
-    prevActiveKeyProp: undefined
+    activeKey: this.props.activeKey || this.props.defaultActiveKey,
+    prevActiveKeyProp: this.props.activeKey
   }
 
   static getDerivedStateFromProps(props, state) {
     const activeKeyProps = props.activeKey
-    if (activeKeyProps != null && activeKeyProps !== state.prevActiveKeyProp) {
+    if (activeKeyProps !== state.prevActiveKeyProp) {
       return {
         activeKey: activeKeyProps,
         prevActiveKeyProp: activeKeyProps
