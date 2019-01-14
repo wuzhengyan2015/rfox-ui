@@ -15,7 +15,7 @@ initialize {
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "rfox-rate_item",
+              "class": "rfox-rate__item",
               "data-index": "0",
             },
             "children": Array [
@@ -45,7 +45,7 @@ initialize {
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "1",
               },
               "children": Array [
@@ -75,7 +75,7 @@ initialize {
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "2",
                 },
                 "children": Array [
@@ -105,7 +105,7 @@ initialize {
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
                   "attribs": Object {
-                    "class": "rfox-rate_item",
+                    "class": "rfox-rate__item",
                     "data-index": "3",
                   },
                   "children": Array [
@@ -135,7 +135,7 @@ initialize {
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": Object {
                     "attribs": Object {
-                      "class": "rfox-rate_item",
+                      "class": "rfox-rate__item",
                       "data-index": "4",
                     },
                     "children": Array [
@@ -226,7 +226,7 @@ initialize {
           },
           Object {
             "attribs": Object {
-              "class": "rfox-rate_item",
+              "class": "rfox-rate__item",
               "data-index": "1",
             },
             "children": Array [
@@ -256,7 +256,7 @@ initialize {
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "2",
               },
               "children": Array [
@@ -286,7 +286,7 @@ initialize {
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "3",
                 },
                 "children": Array [
@@ -316,7 +316,7 @@ initialize {
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
                   "attribs": Object {
-                    "class": "rfox-rate_item",
+                    "class": "rfox-rate__item",
                     "data-index": "4",
                   },
                   "children": Array [
@@ -384,7 +384,7 @@ initialize {
             "parent": [Circular],
             "prev": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "0",
               },
               "children": Array [
@@ -437,7 +437,7 @@ initialize {
           },
           Object {
             "attribs": Object {
-              "class": "rfox-rate_item",
+              "class": "rfox-rate__item",
               "data-index": "2",
             },
             "children": Array [
@@ -467,7 +467,7 @@ initialize {
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "3",
               },
               "children": Array [
@@ -497,7 +497,7 @@ initialize {
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "4",
                 },
                 "children": Array [
@@ -553,7 +553,7 @@ initialize {
             "parent": [Circular],
             "prev": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "1",
               },
               "children": Array [
@@ -585,7 +585,7 @@ initialize {
               "parent": [Circular],
               "prev": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "0",
                 },
                 "children": Array [
@@ -648,7 +648,7 @@ initialize {
           },
           Object {
             "attribs": Object {
-              "class": "rfox-rate_item",
+              "class": "rfox-rate__item",
               "data-index": "3",
             },
             "children": Array [
@@ -678,7 +678,7 @@ initialize {
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "4",
               },
               "children": Array [
@@ -722,7 +722,7 @@ initialize {
             "parent": [Circular],
             "prev": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "2",
               },
               "children": Array [
@@ -754,7 +754,7 @@ initialize {
               "parent": [Circular],
               "prev": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "1",
                 },
                 "children": Array [
@@ -786,7 +786,7 @@ initialize {
                 "parent": [Circular],
                 "prev": Object {
                   "attribs": Object {
-                    "class": "rfox-rate_item",
+                    "class": "rfox-rate__item",
                     "data-index": "0",
                   },
                   "children": Array [
@@ -859,7 +859,7 @@ initialize {
           },
           Object {
             "attribs": Object {
-              "class": "rfox-rate_item",
+              "class": "rfox-rate__item",
               "data-index": "4",
             },
             "children": Array [
@@ -891,7 +891,7 @@ initialize {
             "parent": [Circular],
             "prev": Object {
               "attribs": Object {
-                "class": "rfox-rate_item",
+                "class": "rfox-rate__item",
                 "data-index": "3",
               },
               "children": Array [
@@ -923,7 +923,7 @@ initialize {
               "parent": [Circular],
               "prev": Object {
                 "attribs": Object {
-                  "class": "rfox-rate_item",
+                  "class": "rfox-rate__item",
                   "data-index": "2",
                 },
                 "children": Array [
@@ -955,7 +955,7 @@ initialize {
                 "parent": [Circular],
                 "prev": Object {
                   "attribs": Object {
-                    "class": "rfox-rate_item",
+                    "class": "rfox-rate__item",
                     "data-index": "1",
                   },
                   "children": Array [
@@ -987,7 +987,7 @@ initialize {
                   "parent": [Circular],
                   "prev": Object {
                     "attribs": Object {
-                      "class": "rfox-rate_item",
+                      "class": "rfox-rate__item",
                       "data-index": "0",
                     },
                     "children": Array [

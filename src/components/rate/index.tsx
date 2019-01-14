@@ -12,10 +12,10 @@ export interface IRateProps {
   value?: number;
   disabled?: boolean;
   activeColor?: string;
-  onBlur?: () => {};
-  onChange?: (value: number) => {};
-  onFocus?: () => {};
-  onHoverChange?: (value: number) => {};
+  onBlur?: () => any;
+  onChange?: (value: number) => any;
+  onFocus?: () => any;
+  onHoverChange?: (value: number) => any;
 }
 
 export interface IRateState {
@@ -116,9 +116,9 @@ class Rate extends Component<IRateProps, IRateState> {
                 const style = isActive ? {color: activeColor} : {}
                 return (
                   <li 
-                    className={cx('rfox-rate_item', {
-                      'rfox-rate_item--hover ': isActive, 
-                      'rfox-rate_item--disabled': disabled,
+                    className={cx('rfox-rate__item', {
+                      'rfox-rate__item--hover': isActive, 
+                      'rfox-rate__item--disabled': disabled,
                       [className]: !!className
                     })}
                     style={style}
