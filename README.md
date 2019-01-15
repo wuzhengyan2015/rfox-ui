@@ -7,3 +7,5 @@
 + Affix
 + progress
 + npm publish
++ Modal
++ layout

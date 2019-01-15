@@ -19,7 +19,7 @@ const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
    } = props
   const cssStyle = {
     color,
-    fontSize: `${parseInt(size as string)}px`,
+    fontSize: `${parseInt(size as string, 10)}px`,
     ...style
   }
   return (

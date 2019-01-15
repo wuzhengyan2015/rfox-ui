@@ -62,7 +62,7 @@ class Rate extends Component<IRateProps, IRateState> {
       return
     }
     const target = event.currentTarget
-    let value = parseInt(target.dataset.index) + 1
+    let value = parseInt(target.dataset.index, 10) + 1
     if (allClear && value === currentValue) {
       value = undefined
     }
@@ -86,7 +86,7 @@ class Rate extends Component<IRateProps, IRateState> {
       return
     }
     const target = event.currentTarget
-    const hoverIndex = parseInt(target.dataset.index) + 1
+    const hoverIndex = parseInt(target.dataset.index, 10) + 1
     this.setState({
       hoverIndex
     })
