@@ -3,7 +3,7 @@ import getScroll from '../_util/getScroll'
 import throttle from 'lodash/throttle'
 
 export interface IAffixProps {
-  offsetBttom?: number
+  offsetBottom?: number
   offsetTop?: number
   target?: HTMLElement
   onChange?: (affixed) => void
@@ -19,8 +19,8 @@ class Affix extends Component<IAffixProps, IAffixState> {
   private originTop: number
 
   static defaultProps = {
-    offsetBttom: 0,
-    offsetTop: 0
+    offsetBottom: undefined,
+    offsetTop: undefined
   }
 
   constructor(props) {
@@ -29,7 +29,7 @@ class Affix extends Component<IAffixProps, IAffixState> {
       isAffixed: false
     }
     this.affix = React.createRef()
-    this.handleScroll = throttle(this.handleScroll, 50)
+    this.handleScroll = throttle(this.handleScroll, 16)
   }
   componentDidMount() {
     const { target = window } = this.props
@@ -39,12 +39,22 @@ class Affix extends Component<IAffixProps, IAffixState> {
     target.addEventListener('scroll', this.handleScroll)
   }
   handleScroll = () => {
-    const { target = window } = this.props
-    const isAffixed = getScroll(target, true) > this.originTop
-    this.setState({ isAffixed })
+    const { target = window, offsetTop, offsetBottom, onChange } = this.props
+    const { isAffixed: prevIsAffixed } = this.state
+    let isAffixed = false;
+    if (offsetTop) {
+      isAffixed = getScroll(target, true) > this.originTop - offsetTop
+    } else {
+      isAffixed = (getScroll(target, true) + window.innerHeight - offsetBottom) < this.originTop
+    }
+    this.setState({ isAffixed }, () => {
+      if (prevIsAffixed !== isAffixed) {
+        onChange(isAffixed)
+      }
+    })
   }
   render() {
-    const { children, offsetTop } = this.props
+    const { children, offsetTop, offsetBottom } = this.props
     const { isAffixed } = this.state
     return (
       <div 
@@ -52,7 +62,8 @@ class Affix extends Component<IAffixProps, IAffixState> {
         ref={this.affix}
         style={!isAffixed ? null : {
           position: 'fixed',
-          top: offsetTop + 'px',
+          top: offsetTop ? offsetTop + 'px' : 'auto',
+          bottom: offsetBottom ? offsetBottom + 'px' : 'auto',
           left: this.originLeft + 'px'
         }}>
         {children}

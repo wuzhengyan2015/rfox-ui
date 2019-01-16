@@ -18,7 +18,7 @@ ReactDOM.render(
     </Tabs>
     <Icon type="icon-fillstar" size="28px" color="#f0f"/>
     <Rate />
-    <Affix>
+    <Affix offsetBottom={20} onChange={() => console.log('change affix status')}>
       <button>1231</button>
     </Affix>
   </div>,
