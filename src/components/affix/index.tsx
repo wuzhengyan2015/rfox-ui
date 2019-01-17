@@ -43,9 +43,11 @@ class Affix extends Component<IAffixProps, IAffixState> {
     const { isAffixed: prevIsAffixed } = this.state
     let isAffixed = false;
     if (offsetTop) {
-      isAffixed = getScroll(target, true) > this.originTop - offsetTop
+      isAffixed = getScroll(target, true) + offsetTop > this.originTop
     } else {
-      isAffixed = (getScroll(target, true) + window.innerHeight - offsetBottom) < this.originTop
+      const height = this.affix.current.offsetHeight;
+      console.log(getScroll(target, true) + window.innerHeight - offsetBottom - height, this.originTop)
+      isAffixed = (getScroll(target, true) + window.innerHeight - offsetBottom - height) < this.originTop
     }
     this.setState({ isAffixed }, () => {
       if (prevIsAffixed !== isAffixed) {
@@ -62,8 +64,8 @@ class Affix extends Component<IAffixProps, IAffixState> {
         ref={this.affix}
         style={!isAffixed ? null : {
           position: 'fixed',
-          top: offsetTop ? offsetTop + 'px' : 'auto',
-          bottom: offsetBottom ? offsetBottom + 'px' : 'auto',
+          top: offsetTop !== undefined ? offsetTop + 'px' : 'auto',
+          bottom: offsetBottom !== undefined ? offsetBottom + 'px' : 'auto',
           left: this.originLeft + 'px'
         }}>
         {children}

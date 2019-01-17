@@ -18,9 +18,14 @@ ReactDOM.render(
     </Tabs>
     <Icon type="icon-fillstar" size="28px" color="#f0f"/>
     <Rate />
-    <Affix offsetBottom={20} onChange={() => console.log('change affix status')}>
-      <button>1231</button>
-    </Affix>
+    <div style={{'width': '300px', 'height': '200px', 'overflow-y': 'auto', 'border': '1px solid #ccc'}}>
+      <br/><br/><br/><br/>
+      <Affix offsetBottom={10} onChange={() => console.log('change affix status')}>
+        <button>1231</button>
+      </Affix>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/>
+    </div>
   </div>,
   document.getElementById('root')
 )
