@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import getScroll from '../_util/getScroll'
 import throttle from 'lodash/throttle'
 
+function getTargetRect(target: HTMLElement | Window | null): ClientRect {
+  return target !== window 
+    ? (target as HTMLElement).getBoundingClientRect()
+    : ({ top: 0, left: 0, bottom: 0 } as ClientRect)
+}
+
 export interface IAffixProps {
   offsetBottom?: number
   offsetTop?: number
-  target?: HTMLElement
+  target?: () => HTMLElement | Window | null
   onChange?: (affixed) => void
 }
 
@@ -32,21 +38,25 @@ class Affix extends Component<IAffixProps, IAffixState> {
     this.handleScroll = throttle(this.handleScroll, 16)
   }
   componentDidMount() {
-    const { target = window } = this.props
-    const box = this.affix.current.getBoundingClientRect()
-    this.originLeft = box.left
-    this.originTop = box.top + getScroll(target, true)
-    target.addEventListener('scroll', this.handleScroll)
+    setTimeout(() => {
+      const { target: getTarget } = this.props
+      const target = getTarget() || window
+      const box = this.affix.current.getBoundingClientRect()
+      const targetBox = getTargetRect(target)
+      this.originLeft = box.left - targetBox.left - (target === window ? document.body.clientLeft : (target as HTMLElement).clientLeft)
+      this.originTop = box.top + getScroll(target, true) - targetBox.top - (target === window ? document.body.clientTop : (target as HTMLElement).clientTop)
+      target.addEventListener('scroll', this.handleScroll)
+    })
   }
   handleScroll = () => {
-    const { target = window, offsetTop, offsetBottom, onChange } = this.props
+    const { target: getTarget, offsetTop, offsetBottom, onChange } = this.props
+    const target = getTarget() || window
     const { isAffixed: prevIsAffixed } = this.state
     let isAffixed = false;
     if (offsetTop) {
       isAffixed = getScroll(target, true) + offsetTop > this.originTop
     } else {
       const height = this.affix.current.offsetHeight;
-      console.log(getScroll(target, true) + window.innerHeight - offsetBottom - height, this.originTop)
       isAffixed = (getScroll(target, true) + window.innerHeight - offsetBottom - height) < this.originTop
     }
     this.setState({ isAffixed }, () => {
@@ -56,15 +66,16 @@ class Affix extends Component<IAffixProps, IAffixState> {
     })
   }
   render() {
-    const { children, offsetTop, offsetBottom } = this.props
+    const { children, offsetTop, offsetBottom, target: getTarget } = this.props
     const { isAffixed } = this.state
+    const target = getTarget() || window
     return (
       <div 
         className="rfox-affix" 
         ref={this.affix}
         style={!isAffixed ? null : {
-          position: 'fixed',
-          top: offsetTop !== undefined ? offsetTop + 'px' : 'auto',
+          position: target === window ? 'fixed' : 'absolute',
+          top: offsetTop !== undefined ? offsetTop + (target === window ? 0 : getScroll(target, true)) + 'px' : 'auto',
           bottom: offsetBottom !== undefined ? offsetBottom + 'px' : 'auto',
           left: this.originLeft + 'px'
         }}>
