@@ -8,6 +8,11 @@ function getTargetRect(target: HTMLElement | Window | null): ClientRect {
     : ({ top: 0, left: 0, bottom: 0 } as ClientRect)
 }
 
+function getClientOffset(target: HTMLElement | Window | null, top: boolean): number {
+    const clientTarget = (target === window ? document.body : target) as HTMLElement
+    return top ? clientTarget.clientTop : clientTarget.clientLeft
+}
+
 export interface IAffixProps {
   offsetBottom?: number
   offsetTop?: number
@@ -43,8 +48,8 @@ class Affix extends Component<IAffixProps, IAffixState> {
       const target = getTarget() || window
       const box = this.affix.current.getBoundingClientRect()
       const targetBox = getTargetRect(target)
-      this.originLeft = box.left - targetBox.left - (target === window ? document.body.clientLeft : (target as HTMLElement).clientLeft)
-      this.originTop = box.top + getScroll(target, true) - targetBox.top - (target === window ? document.body.clientTop : (target as HTMLElement).clientTop)
+      this.originLeft = box.left - targetBox.left - getClientOffset(target, false)
+      this.originTop = box.top + getScroll(target, true) - targetBox.top - getClientOffset(target, true)
       target.addEventListener('scroll', this.handleScroll)
     })
   }
@@ -75,9 +80,9 @@ class Affix extends Component<IAffixProps, IAffixState> {
         ref={this.affix}
         style={!isAffixed ? null : {
           position: target === window ? 'fixed' : 'absolute',
-          top: offsetTop !== undefined ? offsetTop + (target === window ? 0 : getScroll(target, true)) + 'px' : 'auto',
-          bottom: offsetBottom !== undefined ? offsetBottom + 'px' : 'auto',
-          left: this.originLeft + 'px'
+          top: offsetTop !== undefined ? `${offsetTop + (target === window ? 0 : getScroll(target, true))}px` : 'auto',
+          bottom: offsetBottom !== undefined ? `${offsetBottom}px` : 'auto',
+          left: `${this.originLeft}px`
         }}>
         {children}
       </div>

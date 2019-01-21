@@ -22,7 +22,9 @@ class AffixDemo extends React.Component {
   }
   render() {
     return (
-      <div ref={(node) => { this.container = node; }} style={{'position': 'relative', 'width': '300px', 'height': '200px', 'overflowY': 'auto', 'border': '1px solid #ccc'}}>
+      <div ref={(node) => { this.container = node; }} style={{
+        position: 'relative', width: '300px', height: '200px', overflowY: 'auto', border: '1px solid #ccc'
+        }}>
         <br/><br/><br/><br/>
         <Affix target={() => this.container} offsetTop={10} onChange={() => console.log('change affix status')}>
           <button>1231</button>
