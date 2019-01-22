@@ -9,33 +9,6 @@ import Affix from './components/affix/index'
 
 const TabPane = Tabs.TabPane;
 
-class AffixDemo extends React.Component {
-  container
-  constructor(props){
-    super(props)
-  }
-  componentDidMount() {
-    console.log(123)
-  }
-  componentDidUpdate() {
-    console.log(345)
-  }
-  render() {
-    return (
-      <div ref={(node) => { this.container = node; }} style={{
-        position: 'relative', width: '300px', height: '200px', overflowY: 'auto', border: '1px solid #ccc'
-        }}>
-        <br/><br/><br/><br/>
-        <Affix target={() => this.container} offsetTop={10} onChange={() => console.log('change affix status')}>
-          <button>1231</button>
-    </Affix> 
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <br/><br/><br/><br/><br/><br/>
-      </div>
-    )
-  }
-}
-
 ReactDOM.render(
   <div style={{margin: '20px', height: '1500px'}}>
     <Tabs defaultActiveKey="2" activeKey="12">
@@ -45,7 +18,9 @@ ReactDOM.render(
     </Tabs>
     <Icon type="icon-fillstar" size="28px" color="#f0f"/>
     <Rate />
-    <AffixDemo />
+    <Affix offsetTop={10} onChange={console.log}>
+      <button>button</button>
+    </Affix>
   </div>,
   document.getElementById('root')
 )

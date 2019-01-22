@@ -31,7 +31,8 @@ class Affix extends Component<IAffixProps, IAffixState> {
 
   static defaultProps = {
     offsetBottom: undefined,
-    offsetTop: undefined
+    offsetTop: undefined,
+    target: () => {}
   }
 
   constructor(props) {
