@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles/index.scss'
 
 enum StrokeLineCap {
     round,
@@ -25,8 +26,8 @@ export interface IProgress {
     gapPosition?: GapPosition
 }
 
-class Progress extends Component {
-  static defaultProp = {
+class Progress extends Component<IProgress> {
+  static defaultProps = {
       type: 'line',
       showInfo: true,
       percent: 0,
@@ -34,10 +35,21 @@ class Progress extends Component {
       strokeWidth: 6,
       strokeLineCap: StrokeLineCap.round
   }
-  render() {
+  renderLineProgress = () => {
     return (
-      <div>
-        
+        <div className="rfox-progress-outer">
+            <div className="rfox-progress-inner">
+                <div className="rfox-progress-bg"></div>
+            </div>
+            <span className="rfox-progress-text">50%</span>
+        </div>
+    )
+  }
+  render() {
+    const { type } = this.props
+    return (
+      <div className={`rfox-progress rfox-progress-${type}`}>
+        { type === 'line' && this.renderLineProgress() }
       </div>
     )
   }

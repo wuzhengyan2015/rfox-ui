@@ -6,6 +6,7 @@ import Tabs from './components/tabs/index'
 import Icon from './components/icon/index'
 import Rate from './components/rate/index'
 import Affix from './components/affix/index'
+import Progress from './components/progress/index'
 
 const TabPane = Tabs.TabPane;
 
@@ -21,6 +22,7 @@ ReactDOM.render(
     <Affix offsetTop={10} onChange={console.log}>
       <button>button</button>
     </Affix>
+    <Progress />
   </div>,
   document.getElementById('root')
 )
