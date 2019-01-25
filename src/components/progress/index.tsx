@@ -46,9 +46,9 @@ class Progress extends Component<IProgress> {
     )
   }
   render() {
-    const { type } = this.props
+    const { type, status } = this.props
     return (
-      <div className={`rfox-progress rfox-progress-${type}`}>
+      <div className={`rfox-progress rfox-progress-${type} rfox-progress--${status}`}>
         { type === 'line' && this.renderLineProgress() }
       </div>
     )

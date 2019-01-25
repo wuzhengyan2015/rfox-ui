@@ -12,10 +12,11 @@
         height: 10px;
     }
     .rfox-progress-bg {
+        position: relative;
         height: 100%;
         background-color: #1890ff;
         border-radius: 100px;
-        transition: all .4s cubic-bezier(.08, .82, .17, 1) 0s;
+        transition: all .4s cubic-bezier(.08, .82, .17, 1);
     }
     .rfox-progress-text {
         font-size: 14px;
@@ -23,7 +24,32 @@
     }
 }
 
-@keyframes ant-progress-active {
+.rfox-progress--success {
+    .rfox-progress-bg {
+        background-color: #52c41a;
+    }
+}
+.rfox-progress--exception {
+    .rfox-progress-bg {
+        background-color: #f5222d;
+    }
+}
+.rfox-progress--active {
+    .rfox-progress-bg:before {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        border-radius: 10px;
+        animation: rfox-progress--active 2.4s cubic-bezier(.23, 1, .32, 1) infinite;
+    }
+}
+
+@keyframes rfox-progress--active {
     0% {
         opacity: .1;
         width: 0

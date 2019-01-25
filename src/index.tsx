@@ -22,7 +22,7 @@ ReactDOM.render(
     <Affix offsetTop={10} onChange={console.log}>
       <button>button</button>
     </Affix>
-    <Progress />
+    <Progress status="active"/>
   </div>,
   document.getElementById('root')
 )
