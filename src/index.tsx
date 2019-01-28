@@ -22,7 +22,7 @@ ReactDOM.render(
     <Affix offsetTop={10} onChange={console.log}>
       <button>button</button>
     </Affix>
-    <Progress status="active"/>
+    <Progress type="circle" percent={30} strokeWidth={16} strokeColor='#f23'/>
   </div>,
   document.getElementById('root')
 )

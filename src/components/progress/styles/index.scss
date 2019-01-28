@@ -3,16 +3,25 @@
     .rfox-progress-outer {
         display: flex;
         align-items: center;
+        &.rfox-progress-outer--squareCap {
+            .rfox-progress-inner {
+                border-radius: 0
+            }
+            .rfox-progress-bg {
+                border-radius: 0
+            }
+        }
     }
     .rfox-progress-inner {
         flex: auto;
         background-color: #f5f5f5;
         border-radius: 100px;
-        margin-right: 5px;
-        height: 10px;
+        margin-right: 8px;
+        height: 8px;
     }
     .rfox-progress-bg {
         position: relative;
+        width: 0;
         height: 100%;
         background-color: #1890ff;
         border-radius: 100px;
