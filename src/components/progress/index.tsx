@@ -24,7 +24,20 @@ class Progress extends Component<IProgressProps> {
       status: 'normal',
       strokeWidth: 8,
       strokeColor: '#1890ff',
-      strokeLineCap: 'round'
+      strokeLineCap: 'round',
+      width: 132
+  }
+  componentDidMount() {
+    const { type } = this.props
+    if (type === 'circle') {
+        this.renderCircleProgress()
+    }
+  }
+  componentDidUpdate() {
+    const { type } = this.props
+    if (type === 'circle') {
+        this.renderCircleProgress()
+    }
   }
   renderLineProgress = () => {
     const { 
@@ -42,37 +55,42 @@ class Progress extends Component<IProgressProps> {
     )
   }
   renderCircleProgress = () => {
-    setTimeout(() => {
-        var stage = new Kinetic.Stage({
-            container: "rfox-progress", 
-            width: 600, 
-            height: 400 
-        });
-        
-        var layer = new Kinetic.Layer();
-        var rect = new Kinetic.Rect({
-            x: 200, 
-            y: 150, 
-            width: 200, 
-            height: 100, 
-            fill: "red", 
-            stroke: "black", 
-            strokeWidth: 4 
-        });
-        
-        layer.add(rect);
-        stage.add(layer);
-        stage.draw();
-    })
+    const { width, strokeWidth, strokeColor } = this.props
+    const stage = new Kinetic.Stage({
+        container: "rfox-progress", 
+        width,
+        height: width
+    });
+    const layer = new Kinetic.Layer();
+    const bgCircle = new Kinetic.Circle({
+        x: width / 2,
+        y: width / 2,
+        radius: width / 2 - strokeWidth / 2,
+        stroke: '#f5f5f5',
+        strokeWidth
+    });
+    const arc = new Kinetic.Arc({
+      x: width / 2,
+      y: width / 2,
+      innerRadius: width / 2 - strokeWidth / 2,
+      outerRadius: width / 2 - strokeWidth / 2,
+      stroke: strokeColor,
+      strokeWidth,
+      angle: 180,
+      rotationDeg: -90,
+      lineCap: 'round'
+    });
+    
+    layer.add(bgCircle);
+    layer.add(arc);
+    stage.add(layer);
+    stage.draw();
   }
   render() {
-    const { 
-        type, status
-     } = this.props
+    const { type, status } = this.props
     return (
       <div id="rfox-progress" className={`rfox-progress rfox-progress-${type} rfox-progress--${status}`}>
         { type === 'line' && this.renderLineProgress() }
-        { type === 'circle' && this.renderCircleProgress() }
       </div>
     )
   }
