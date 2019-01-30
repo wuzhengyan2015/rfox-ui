@@ -3,6 +3,8 @@ import cx from 'classnames'
 import Kinetic from 'kinetic'
 import './styles/index.scss'
 
+const circleProgressStage = Symbol('circleProgressStage')
+
 export interface IProgressProps {
     type?: string; // line | circle | dashboard
     showInfo?: boolean;
@@ -17,6 +19,8 @@ export interface IProgressProps {
 }
 
 class Progress extends Component<IProgressProps> {
+  [circleProgressStage]
+
   static defaultProps = {
       type: 'line',
       showInfo: true,
@@ -30,13 +34,13 @@ class Progress extends Component<IProgressProps> {
   componentDidMount() {
     const { type } = this.props
     if (type === 'circle') {
-        this.renderCircleProgress()
+        this.drawCircleProgress()
     }
   }
   componentDidUpdate() {
     const { type } = this.props
     if (type === 'circle') {
-        this.renderCircleProgress()
+        this.drawCircleProgress()
     }
   }
   renderLineProgress = () => {
@@ -54,37 +58,43 @@ class Progress extends Component<IProgressProps> {
         </div>
     )
   }
-  renderCircleProgress = () => {
-    const { width, strokeWidth, strokeColor } = this.props
-    const stage = new Kinetic.Stage({
-        container: "rfox-progress", 
-        width,
-        height: width
-    });
-    const layer = new Kinetic.Layer();
-    const bgCircle = new Kinetic.Circle({
-        x: width / 2,
-        y: width / 2,
-        radius: width / 2 - strokeWidth / 2,
+  drawCircleProgress = () => {
+    const { 
+        width, strokeWidth, strokeColor, percent, strokeLineCap
+     } = this.props
+    const halfWidth = width / 2
+    if (this[circleProgressStage]) {
+        this[circleProgressStage].clear().setWidth(width).setHeight(width)
+    } else {
+        this[circleProgressStage] = new Kinetic.Stage({
+            container: "rfox-progress", 
+            width,
+            height: width
+        })
+    }
+    const layer = new Kinetic.Layer()
+    const circleBg = new Kinetic.Circle({
+        x: halfWidth,
+        y: halfWidth,
+        radius: halfWidth - strokeWidth / 2,
         stroke: '#f5f5f5',
         strokeWidth
-    });
-    const arc = new Kinetic.Arc({
-      x: width / 2,
-      y: width / 2,
-      innerRadius: width / 2 - strokeWidth / 2,
-      outerRadius: width / 2 - strokeWidth / 2,
+    })
+    const circleArc = new Kinetic.Arc({
+      x: halfWidth,
+      y: halfWidth,
+      innerRadius: halfWidth - strokeWidth / 2,
+      outerRadius: halfWidth - strokeWidth / 2,
       stroke: strokeColor,
       strokeWidth,
-      angle: 180,
+      angle: 360 * percent / 100,
       rotationDeg: -90,
-      lineCap: 'round'
-    });
+      lineJoin: strokeLineCap
+    })
     
-    layer.add(bgCircle);
-    layer.add(arc);
-    stage.add(layer);
-    stage.draw();
+    layer.add(circleBg)
+    layer.add(circleArc)
+    this[circleProgressStage].add(layer).draw()
   }
   render() {
     const { type, status } = this.props
