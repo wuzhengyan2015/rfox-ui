@@ -10,6 +10,19 @@ const circleStatusMap = {
   exception: '#f5222d'
 }
 
+function getCircleRotationDeg(position, degree) {
+  if (degree === 0) {
+    return -90;
+  }
+  const positionMap = {
+    left: 180,
+    top: 270,
+    right: 0,
+    bottom: 90
+  }
+  return positionMap[position] + degree / 2
+}
+
 export interface IProgressProps {
   type?: string // line | circle | dashboard
   showInfo?: boolean
@@ -33,7 +46,9 @@ class Progress extends Component<IProgressProps> {
     status: 'normal',
     strokeWidth: 8,
     strokeLineCap: 'round',
-    width: 132
+    width: 132,
+    gapPosition: 'bottom',
+    gapDegree: 0,
   }
   componentDidMount() {
     const { type } = this.props
@@ -78,14 +93,20 @@ class Progress extends Component<IProgressProps> {
   }
   drawCircleProgress = () => {
     const {
+      type,
       width,
       showInfo,
       strokeWidth,
       strokeColor,
       percent,
       strokeLineCap,
-      status
+      status,
+      gapPosition
     } = this.props
+    let { gapDegree } = this.props
+    if (type === 'dashboard') {
+      gapDegree = 90
+    }
     const halfWidth = width / 2
     if (this[circleProgressStage]) {
       this[circleProgressStage]
@@ -100,12 +121,16 @@ class Progress extends Component<IProgressProps> {
       })
     }
     const layer = new Kinetic.Layer()
-    const circleBg = new Kinetic.Circle({
+    const circleBg = new Kinetic.Arc({
       x: halfWidth,
       y: halfWidth,
-      radius: halfWidth - strokeWidth / 2,
+      innerRadius: halfWidth - strokeWidth / 2,
+      outerRadius: halfWidth - strokeWidth / 2,
       stroke: '#f5f5f5',
-      strokeWidth
+      strokeWidth,
+      angle: 360 - gapDegree,
+      rotationDeg: getCircleRotationDeg(gapPosition, gapDegree),
+      lineJoin: strokeLineCap === 'round' ? strokeLineCap : 'bevel'
     })
     const circleArc = new Kinetic.Arc({
       x: halfWidth,
@@ -114,8 +139,8 @@ class Progress extends Component<IProgressProps> {
       outerRadius: halfWidth - strokeWidth / 2,
       stroke: strokeColor ? strokeColor : circleStatusMap[status],
       strokeWidth,
-      angle: (360 * percent) / 100,
-      rotationDeg: -90,
+      angle: (360 - gapDegree) * percent / 100,
+      rotationDeg: getCircleRotationDeg(gapPosition, gapDegree),
       lineJoin: strokeLineCap === 'round' ? strokeLineCap : 'bevel'
     })
     const progressText = new Kinetic.Text({

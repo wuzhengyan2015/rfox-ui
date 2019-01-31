@@ -22,7 +22,7 @@ ReactDOM.render(
     <Affix offsetTop={10} onChange={console.log}>
       <button>button</button>
     </Affix>
-    <Progress type="circle" percent={30}/>
+    <Progress type="circle" percent={80} gapDegree={90}/>
   </div>,
   document.getElementById('root')
 )
