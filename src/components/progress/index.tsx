@@ -98,28 +98,24 @@ class Progress extends Component<IProgressProps> {
       showInfo,
       strokeWidth,
       strokeColor,
-      percent,
       strokeLineCap,
       status,
       gapPosition
     } = this.props
-    let { gapDegree } = this.props
+    let { gapDegree, percent } = this.props
+    percent = Math.max(0, Math.min(100, percent))
     if (type === 'dashboard') {
       gapDegree = 90
     }
     const halfWidth = width / 2
     if (this[circleProgressStage]) {
-      this[circleProgressStage]
-        .clear()
-        .setWidth(width)
-        .setHeight(width)
-    } else {
-      this[circleProgressStage] = new Kinetic.Stage({
-        container: 'rfox-progress',
-        width,
-        height: width
-      })
+      this[circleProgressStage].destroy()
     }
+    this[circleProgressStage] = new Kinetic.Stage({
+      container: 'rfox-progress',
+      width,
+      height: width
+    })
     const layer = new Kinetic.Layer()
     const circleBg = new Kinetic.Arc({
       x: halfWidth,

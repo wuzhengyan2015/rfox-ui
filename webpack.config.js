@@ -3,13 +3,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'eval',
   entry: {
-    app: path.join(__dirname, 'src/index.tsx')
+    index: path.join(__dirname, './src/index.tsx')
   },
   output: {
     filename: '[name].js',
-    path: path.resolve('build')
+    path: path.resolve('dist'),
+    library: 'rfox',
+    libraryTarget: 'umd'
   },
 
   resolve: {
