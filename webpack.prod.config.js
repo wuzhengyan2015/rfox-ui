@@ -1,25 +1,21 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
-    index: path.join(__dirname, './src/demo.tsx')
+    index: path.join(__dirname, './src/index.tsx')
   },
   output: {
     filename: '[name].js',
-    path: path.resolve('dist'),
+    path: __dirname + '/dist/',
+    library: 'rfox',
+    libraryTarget: 'umd'
   },
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src/demo.html')
-    })
-  ],
 
   module: {
     rules: [{
@@ -50,15 +46,14 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 8192
+            limit: 8192,
+            name: 'assets/[name].[hash].[ext]'
           }
         }]
       }
     ]
   },
-
-  devServer: {
-    port: 3000,
-    historyApiFallback: true,
-  },
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
+  ],
 }
