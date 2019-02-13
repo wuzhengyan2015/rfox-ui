@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Button } from './index'
 
 ReactDOM.render(
-    <div>213</div>,
+    <div><Button>button</Button></div>,
     document.getElementById('root')
 )
