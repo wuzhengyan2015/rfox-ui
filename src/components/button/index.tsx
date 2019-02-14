@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import './styles/index.scss'
 
 export interface IButtonProps {
@@ -6,7 +7,7 @@ export interface IButtonProps {
     href?: string;
     htmlType?: string;
     target?: string;
-    type?: string;
+    type?: string;    // primary dashed danger
     onClick?: (event) => void;
     block?: boolean;
     size?: string;
@@ -17,16 +18,18 @@ class Button extends Component<IButtonProps> {
   static defaultProps = {
       disabled: false,
       htmlType: 'button',
-      type: 'default',
+      type: '',
       onClick: (event) => {},
       block: false,
       size: 'default'
   }
   render() {
-    const { children, htmlType } = this.props
+    const { children, htmlType, type } = this.props
     return (
       <button
-        className="rfox-btn"
+        className={ cx('rfox-btn', {
+          [`rfox-btn-${type}`]: !!type
+        }) }
         type={htmlType}>
         { children }
       </button>

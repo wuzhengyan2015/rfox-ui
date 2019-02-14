@@ -17,10 +17,34 @@
     box-shadow: 0 2px 0 rgba(0,0,0,0.015);
     color: rgba(0,0,0,0.65);
     background-color: #fff;
+    outline: 0;
     &:hover,
     &:focus {
         color: #40a9ff;
-        background-color: #fff;
         border-color: #40a9ff;
+    }
+    &.active,
+    &:active {
+        color: #096dd9;
+        border-color: #096dd9;
+    }
+    &.rfox-btn-primary {
+        color: #fff;
+        background-color: #1890ff;
+        border-color: #1890ff;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        &:hover,
+        &:focus {
+            color: #fff;
+            background-color: #40a9ff;
+            border-color: #40a9ff;
+        }
+        &.active,
+        &:active {
+            color: #fff;
+            background-color: #096dd9;
+            border-color: #096dd9;
+        }
     }
 }
