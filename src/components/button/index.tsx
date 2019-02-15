@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import './styles/index.scss'
 
+const sizeMap = new Map([
+  ['default', ''],
+  ['small', 'sm'],
+  ['large', 'lg'],
+])
+
 export interface IButtonProps {
     disabled?: boolean;
     href?: string;
@@ -10,7 +16,7 @@ export interface IButtonProps {
     type?: string;    // primary dashed danger
     onClick?: (event) => void;
     block?: boolean;
-    size?: string;
+    size?: string;  // default small large
     shape?: string;
 }
 
@@ -24,11 +30,12 @@ class Button extends Component<IButtonProps> {
       size: 'default'
   }
   render() {
-    const { children, htmlType, type } = this.props
+    const { children, htmlType, type, size } = this.props
     return (
       <button
         className={ cx('rfox-btn', {
-          [`rfox-btn-${type}`]: !!type
+          [`rfox-btn-${type}`]: !!type,
+          [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size)
         }) }
         type={htmlType}>
         { children }
