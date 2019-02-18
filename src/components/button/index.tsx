@@ -30,14 +30,20 @@ class Button extends Component<IButtonProps> {
       size: 'default'
   }
   render() {
-    const { children, htmlType, type, size } = this.props
+    const { 
+      children, htmlType, type, size, disabled, block, onClick, shape
+    } = this.props
     return (
       <button
         className={ cx('rfox-btn', {
           [`rfox-btn-${type}`]: !!type,
-          [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size)
+          [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size),
+          'rfox-btn-disabled': disabled,
+          'rfox-btn-block': block,
+          [`rfox-btn-${shape}`]: !!shape,
         }) }
-        type={htmlType}>
+        type={htmlType}
+        onClick={onClick}>
         { children }
       </button>
     )
