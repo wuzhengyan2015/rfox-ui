@@ -31,21 +31,30 @@ class Button extends Component<IButtonProps> {
   }
   render() {
     const { 
-      children, htmlType, type, size, disabled, block, onClick, shape
+      children, htmlType, type, size, disabled, block, onClick, shape, href, target
     } = this.props
+    const className = cx('rfox-btn', {
+      [`rfox-btn-${type}`]: !!type,
+      [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size),
+      'rfox-btn-disabled': disabled,
+      'rfox-btn-block': block,
+      [`rfox-btn-${shape}`]: !!shape,
+    })
     return (
-      <button
-        className={ cx('rfox-btn', {
-          [`rfox-btn-${type}`]: !!type,
-          [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size),
-          'rfox-btn-disabled': disabled,
-          'rfox-btn-block': block,
-          [`rfox-btn-${shape}`]: !!shape,
-        }) }
-        type={htmlType}
-        onClick={onClick}>
-        { children }
-      </button>
+      !!href ?
+        <a
+          className={ className }
+          href={ href }
+          target={target}
+          onClick={ onClick }>
+          { children }
+        </a> 
+        : <button
+          className={ className }
+          type={ htmlType }
+          onClick={ onClick }>
+          { children }
+        </button>
     )
   }
 }
