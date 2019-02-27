@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Button } from './index'
+import Modal from './components/modal'
 
 ReactDOM.render(
     <div>
-        <Button shape="round" href="http://www.baidu.com" target="_blank">button</Button>
-        <Button type="primary" size="large">button</Button>
-        <Button type="dash" size="small" block>button</Button>
-        <Button type="danger" disabled>button</Button>
+        <Modal>
+            modal components
+        </Modal>
     </div>,
     document.getElementById('root')
 )

@@ -1,31 +1,34 @@
 import React, { Component, ReactNode } from 'react'
-import './styles/style.scss'
+import ReactDOM from 'react-dom';
 import Button from '../button'
+import './styles/style.scss'
 
 export interface IModalProp {
-  afterClosr: () => {};
-  bodyStyle: CSSStyleDeclaration;
-  cancelText: string;
-  centered: boolean;
-  closable: boolean;
-  confirmLoading: boolean;
-  destroyOnClose: boolean;
-  footer: string | ReactNode;
-  mask: boolean;
-  maskClosable: boolean;
-  maskStyle: CSSStyleDeclaration;
-  okText: string;
-  okType: string;
-  title: string;
-  visible: boolean;
-  width: string | number;
-  wrapClassName: string;
-  zIndex: number;
-  onCancel: (event) => {},
-  onOk: (event) => {}
+  afterClose?: () => {};
+  bodyStyle?: CSSStyleDeclaration;
+  cancelText?: string;
+  centered?: boolean;
+  closable?: boolean;
+  confirmLoading?: boolean;
+  destroyOnClose?: boolean;
+  footer?: string | ReactNode;
+  mask?: boolean;
+  maskClosable?: boolean;
+  maskStyle?: CSSStyleDeclaration;
+  okText?: string;
+  okType?: string;
+  title?: string | ReactNode;
+  visible?: boolean;
+  width?: string | number;
+  wrapClassName?: string;
+  zIndex?: number;
+  children?: any;
+  onCancel?: (event) => {},
+  onOk?: (event) => {}
 }
 
-class Modal extends Component {
+class Modal extends Component<IModalProp> {
+  private el: Element
   static defaultProps = {
     cancelText: '取消',
     centered: false,
@@ -41,11 +44,43 @@ class Modal extends Component {
     onCancel: () => {},
     onOk: () => {}
   }
+  constructor(props) {
+    super(props)
+    this.el = document.createElement('div')
+  }
+
+  componentDidMount() {
+    document.body.appendChild(this.el)
+  }
+
+  componentWillUnmount() {
+    document.body.removeChild(this.el);
+  }
+
   render() {
+    const { children, okText, cancelText, okType } = this.props
     return (
-      <div>
-        
-      </div>
+      ReactDOM.createPortal((
+        <React.Fragment>
+          <div className="rfox-modal__mask"></div>
+          <div className="rfox-modal__wrapper">
+            <div className="rfox-modal">
+              <div className="rfox-modal__header">
+              </div>
+              <div className="rfox-model__body">
+                { children }
+              </div>
+              <div className="rfox-model__footer">
+                <Button>{ cancelText }</Button>
+                <Button
+                  type={ okType }>
+                  { okText }
+                </Button>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      ), this.el)
     )
   }
 }
