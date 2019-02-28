@@ -6,7 +6,7 @@
     left: 0;
     z-index: 1000;
     height: 100%;
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .rfox-modal__wrapper {
@@ -22,10 +22,42 @@
 
 .rfox-modal {
     position: relative;
-    background-color: #fff;
-    background-clip: padding-box;
+    top: 100px;
+    margin: 0 auto;
     border: 0;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
     border-radius: 4px;
-    -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rfox-modal__header {
+    padding: 16px 24px;
+    color: rgba(0, 0, 0, 0.65);
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 4px 4px 0 0;
+}
+
+.rfox-modal__title {
+    margin: 0;
+    color: rgba(0,0,0,0.85);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.rfox-modal__body {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.rfox-modal__footer {
+    padding: 10px 16px;
+    text-align: right;
+    border-top: 1px solid #e8e8e8;
+    border-radius: 0 0 4px 4px;
 }

@@ -58,19 +58,29 @@ class Modal extends Component<IModalProp> {
   }
 
   render() {
-    const { children, okText, cancelText, okType } = this.props
+    const { 
+      children,
+      okText,
+      cancelText,
+      okType, 
+      width,
+      title
+     } = this.props
     return (
       ReactDOM.createPortal((
         <React.Fragment>
           <div className="rfox-modal__mask"></div>
           <div className="rfox-modal__wrapper">
-            <div className="rfox-modal">
+            <div className="rfox-modal" style={{ width }}>
               <div className="rfox-modal__header">
+                <div className="rfox-modal__title">
+                  { title }
+                </div>
               </div>
-              <div className="rfox-model__body">
+              <div className="rfox-modal__body">
                 { children }
               </div>
-              <div className="rfox-model__footer">
+              <div className="rfox-modal__footer">
                 <Button>{ cancelText }</Button>
                 <Button
                   type={ okType }>

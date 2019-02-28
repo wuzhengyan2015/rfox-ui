@@ -32,9 +32,9 @@ describe('Rate tests', () => {
     })
     it('character prop test', () => {
         const wrapper = shallow(mockRate)
-        expect(wrapper.find(Icon).at(0).prop('type')).toBe('icon-fillstar')
-        const customWrapper = shallow(<Rate character={<Icon type='icon-favorite' />}/>)
-        expect(customWrapper.find(Icon).at(0).prop('type')).toBe('icon-favorite')
+        expect(wrapper.find(Icon).at(0).prop('type')).toBe('icon-star-fill')
+        const customWrapper = shallow(<Rate character={<Icon type='icon-heart-fill' />}/>)
+        expect(customWrapper.find(Icon).at(0).prop('type')).toBe('icon-heart-fill')
     })
     it('className prop test', () => {
         const wrapper = shallow(<Rate className="unit-test" />)

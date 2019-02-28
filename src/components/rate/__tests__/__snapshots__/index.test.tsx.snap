@@ -21,7 +21,7 @@ initialize {
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "icon iconfont icon-fillstar",
+                  "class": "icon iconfont icon-star-fill",
                   "style": "font-size:24px",
                 },
                 "children": Array [],
@@ -51,7 +51,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -81,7 +81,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -111,7 +111,7 @@ initialize {
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "icon iconfont icon-fillstar",
+                        "class": "icon iconfont icon-star-fill",
                         "style": "font-size:24px",
                       },
                       "children": Array [],
@@ -141,7 +141,7 @@ initialize {
                     "children": Array [
                       Object {
                         "attribs": Object {
-                          "class": "icon iconfont icon-fillstar",
+                          "class": "icon iconfont icon-star-fill",
                           "style": "font-size:24px",
                         },
                         "children": Array [],
@@ -232,7 +232,7 @@ initialize {
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "icon iconfont icon-fillstar",
+                  "class": "icon iconfont icon-star-fill",
                   "style": "font-size:24px",
                 },
                 "children": Array [],
@@ -262,7 +262,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -292,7 +292,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -322,7 +322,7 @@ initialize {
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "icon iconfont icon-fillstar",
+                        "class": "icon iconfont icon-star-fill",
                         "style": "font-size:24px",
                       },
                       "children": Array [],
@@ -390,7 +390,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -443,7 +443,7 @@ initialize {
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "icon iconfont icon-fillstar",
+                  "class": "icon iconfont icon-star-fill",
                   "style": "font-size:24px",
                 },
                 "children": Array [],
@@ -473,7 +473,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -503,7 +503,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -559,7 +559,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -591,7 +591,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -654,7 +654,7 @@ initialize {
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "icon iconfont icon-fillstar",
+                  "class": "icon iconfont icon-star-fill",
                   "style": "font-size:24px",
                 },
                 "children": Array [],
@@ -684,7 +684,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -728,7 +728,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -760,7 +760,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -792,7 +792,7 @@ initialize {
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "icon iconfont icon-fillstar",
+                        "class": "icon iconfont icon-star-fill",
                         "style": "font-size:24px",
                       },
                       "children": Array [],
@@ -865,7 +865,7 @@ initialize {
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "icon iconfont icon-fillstar",
+                  "class": "icon iconfont icon-star-fill",
                   "style": "font-size:24px",
                 },
                 "children": Array [],
@@ -897,7 +897,7 @@ initialize {
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "icon iconfont icon-fillstar",
+                    "class": "icon iconfont icon-star-fill",
                     "style": "font-size:24px",
                   },
                   "children": Array [],
@@ -929,7 +929,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "icon iconfont icon-fillstar",
+                      "class": "icon iconfont icon-star-fill",
                       "style": "font-size:24px",
                     },
                     "children": Array [],
@@ -961,7 +961,7 @@ initialize {
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "icon iconfont icon-fillstar",
+                        "class": "icon iconfont icon-star-fill",
                         "style": "font-size:24px",
                       },
                       "children": Array [],
@@ -993,7 +993,7 @@ initialize {
                     "children": Array [
                       Object {
                         "attribs": Object {
-                          "class": "icon iconfont icon-fillstar",
+                          "class": "icon iconfont icon-star-fill",
                           "style": "font-size:24px",
                         },
                         "children": Array [],

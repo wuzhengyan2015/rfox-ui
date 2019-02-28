@@ -27,7 +27,7 @@ export interface IRateState {
 class Rate extends Component<IRateProps, IRateState> {
   static defaultProps = {
     allClear: false,
-    character: <Icon type="icon-fillstar" />,
+    character: <Icon type="icon-star-fill" />,
     className: '',
     count: 5,
     defaultValue: 0,
