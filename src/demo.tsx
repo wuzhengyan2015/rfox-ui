@@ -10,6 +10,7 @@ ReactDOM.render(
     <div>
         <Modal
             title="Basic Modal"
+            style={{ top: '200px' }}
         >
             modal components
         </Modal>

@@ -1,11 +1,14 @@
 import React, { Component, ReactNode } from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
+import cx from 'classnames'
 import Button from '../button'
+import Icon from '../icon'
 import './styles/style.scss'
 
 export interface IModalProp {
   afterClose?: () => {};
-  bodyStyle?: CSSStyleDeclaration;
+  style?: React.CSSProperties;
+  bodyStyle?: React.CSSProperties;
   cancelText?: string;
   centered?: boolean;
   closable?: boolean;
@@ -14,7 +17,7 @@ export interface IModalProp {
   footer?: string | ReactNode;
   mask?: boolean;
   maskClosable?: boolean;
-  maskStyle?: CSSStyleDeclaration;
+  maskStyle?: React.CSSProperties;
   okText?: string;
   okType?: string;
   title?: string | ReactNode;
@@ -27,7 +30,11 @@ export interface IModalProp {
   onOk?: (event) => {}
 }
 
-class Modal extends Component<IModalProp> {
+interface IModalState {
+  visible: boolean;
+}
+
+class Modal extends Component<IModalProp, IModalState> {
   private el: Element
   static defaultProps = {
     cancelText: '取消',
@@ -42,11 +49,15 @@ class Modal extends Component<IModalProp> {
     width: 520,
     zIndex: 1000,
     onCancel: () => {},
-    onOk: () => {}
+    onOk: () => {},
+    afterClose: () => {}
   }
   constructor(props) {
     super(props)
     this.el = document.createElement('div')
+    this.state = {
+      visible: true
+    }
   }
 
   componentDidMount() {
@@ -57,6 +68,20 @@ class Modal extends Component<IModalProp> {
     document.body.removeChild(this.el);
   }
 
+  closeModal = () => {
+    const { afterClose } = this.props
+    this.setState({
+      visible: false,
+    })
+    afterClose()
+  }
+
+  handleMaskClick = (e) => {
+    if (e.target === e.currentTarget) {
+      this.closeModal()
+    }
+  }
+
   render() {
     const { 
       children,
@@ -64,14 +89,37 @@ class Modal extends Component<IModalProp> {
       cancelText,
       okType, 
       width,
-      title
-     } = this.props
+      title,
+      centered,
+      style,
+      maskClosable
+    } = this.props
+    const { visible } = this.state;
+    
     return (
       ReactDOM.createPortal((
         <React.Fragment>
-          <div className="rfox-modal__mask"></div>
-          <div className="rfox-modal__wrapper">
-            <div className="rfox-modal" style={{ width }}>
+          <div
+            className={cx('rfox-modal__mask', {
+              'rfox-modal__mask--hidden': !visible
+            })}
+            ></div>
+          <div
+            className={cx('rfox-modal__wrapper', {
+                'rfox-modal__wrapper--hidden': !visible
+              })}
+              onClick={maskClosable ? this.handleMaskClick : undefined}
+            >
+            <div
+              className={cx('rfox-modal', {
+                'rfox-modal--center': centered
+              })}
+              style={{ width, ...style }}>
+              <button className="rfox-modal__close">
+                <span className="rfox-modal__close-x">
+                  <Icon type="icon-close" color="#8c8c8c" size={16} />
+                </span>
+              </button>
               <div className="rfox-modal__header">
                 <div className="rfox-modal__title">
                   { title }

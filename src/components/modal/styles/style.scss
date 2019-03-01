@@ -9,6 +9,10 @@
     background-color: rgba(0, 0, 0, 0.65);
 }
 
+.rfox-modal__mask--hidden {
+    display: none;
+}
+
 .rfox-modal__wrapper {
     position: fixed;
     top: 0;
@@ -18,6 +22,10 @@
     z-index: 1000;
     overflow: auto;
     outline: 0;
+}
+
+.rfox-modal__wrapper--hidden {
+    display: none;
 }
 
 .rfox-modal {
@@ -30,6 +38,43 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rfox-modal--center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rfox-modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 0;
+    color: rgba(0,0,0,0.45);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+}
+
+.rfox-modal__close-x {
+    display: block;
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 56px;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
 }
 
 .rfox-modal__header {
@@ -60,4 +105,7 @@
     text-align: right;
     border-top: 1px solid #e8e8e8;
     border-radius: 0 0 4px 4px;
+    button + button {
+        margin-left: 8px;
+    }
 }
