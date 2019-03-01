@@ -6,3 +6,7 @@
 ## Todo
 + Modal (unmountNode won't trigger componentWillUnmout?)
 + layout
+
+## issue
+
+getDerivedStateFromProps cause update issue
