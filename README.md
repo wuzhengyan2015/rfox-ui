@@ -9,4 +9,6 @@
 
 ## issue
 
-getDerivedStateFromProps cause update issue
+1. getDerivedStateFromProps cause update issue:
+
+if component has value prop, show UI according to value.

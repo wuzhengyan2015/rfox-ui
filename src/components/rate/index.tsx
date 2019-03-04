@@ -20,7 +20,6 @@ export interface IRateProps {
 
 export interface IRateState {
   value: number;
-  prevValue: number;
   hoverIndex: number;
 }
 
@@ -32,7 +31,6 @@ class Rate extends Component<IRateProps, IRateState> {
     count: 5,
     defaultValue: 0,
     disabled: false,
-    value: 0,
     activeColor: '#fadb14',
     onBlur: () => {},
     onChange: (value) => {},
@@ -41,16 +39,14 @@ class Rate extends Component<IRateProps, IRateState> {
   }
   state = {
     value: this.props.value || this.props.defaultValue,
-    prevValue: this.props.value,
     hoverIndex: undefined
   }
-  static getDerivedStateFromProps(props, state) {
-    const { value: valueProps } = props
-    const { prevValue } = state
-    if (valueProps !== prevValue) {
+  static getDerivedStateFromProps(props) {
+    const { value } = props
+    console.log(value);
+    if (value !== undefined) {
       return {
-        value: valueProps,
-        prevValue: valueProps
+        value
       }
     }
     return null;

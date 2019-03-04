@@ -10,7 +10,6 @@ export interface ITabsProps {
 
 export interface ITabsState {
   activeKey: string;
-  prevActiveKeyProp: string
 }
 
 class Tabs extends Component<ITabsProps, ITabsState> {
@@ -23,15 +22,13 @@ class Tabs extends Component<ITabsProps, ITabsState> {
 
   state = {
     activeKey: this.props.activeKey || this.props.defaultActiveKey,
-    prevActiveKeyProp: this.props.activeKey
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const activeKeyProps = props.activeKey
-    if (activeKeyProps !== state.prevActiveKeyProp) {
+  static getDerivedStateFromProps(props) {
+    const { activeKey } = props
+    if (activeKey !== undefined) {
       return {
-        activeKey: activeKeyProps,
-        prevActiveKeyProp: activeKeyProps
+        activeKey,
       }
     }
     return null
