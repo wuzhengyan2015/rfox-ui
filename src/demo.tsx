@@ -12,7 +12,7 @@ const TabPane = Tabs.TabPane;
 ReactDOM.render(
     <div>
         <Modal
-            visible={false}
+            closable={true}
             title="Basic Modal"
             style={{ top: '200px' }}
         >

@@ -65,6 +65,10 @@
     transition: color .3s;
 }
 
+.rfox-modal__close--hidden {
+    display: none;
+}
+
 .rfox-modal__close-x {
     display: block;
     width: 56px;

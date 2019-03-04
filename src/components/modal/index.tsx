@@ -64,6 +64,16 @@ class Modal extends Component<IModalProp, IModalState> {
     document.body.appendChild(this.el)
   }
 
+  static getDerivedStateFromProps(props) {
+    const { visible } = props;
+    if (visible !== undefined) {
+      return {
+        visible
+      }
+    }
+    return null
+  }
+
   componentWillUnmount() {
     document.body.removeChild(this.el);
   }
@@ -92,30 +102,46 @@ class Modal extends Component<IModalProp, IModalState> {
       title,
       centered,
       style,
-      maskClosable
+      mask,
+      maskStyle,
+      maskClosable,
+      closable,
+      destroyOnClose,
+      zIndex,
+      onCancel,
+      onOk,
+      wrapClassName,
+      bodyStyle,
+      footer,
+      confirmLoading
     } = this.props
     const { visible } = this.state;
     
     return (
-      ReactDOM.createPortal((
+      (visible || !destroyOnClose) ? ReactDOM.createPortal((
         <React.Fragment>
           <div
             className={cx('rfox-modal__mask', {
-              'rfox-modal__mask--hidden': !visible
+              'rfox-modal__mask--hidden': !visible || !mask
             })}
+            style={{ zIndex, ...maskStyle }}
             ></div>
           <div
             className={cx('rfox-modal__wrapper', {
-                'rfox-modal__wrapper--hidden': !visible
-              })}
-              onClick={maskClosable ? this.handleMaskClick : undefined}
-            >
+              'rfox-modal__wrapper--hidden': !visible,
+              [wrapClassName]: !!wrapClassName,
+            })}
+            style={{ zIndex }}
+            onClick={maskClosable ? this.handleMaskClick : undefined}
+          >
             <div
               className={cx('rfox-modal', {
                 'rfox-modal--center': centered
               })}
               style={{ width, ...style }}>
-              <button className="rfox-modal__close">
+              <button className={cx('rfox-modal__close', {
+                'rfox-modal__close--hidden': closable
+              })}>
                 <span className="rfox-modal__close-x">
                   <Icon type="icon-close" color="#8c8c8c" size={16} />
                 </span>
@@ -125,20 +151,29 @@ class Modal extends Component<IModalProp, IModalState> {
                   { title }
                 </div>
               </div>
-              <div className="rfox-modal__body">
+              <div
+                className="rfox-modal__body"
+                style={ bodyStyle }
+              >
                 { children }
               </div>
               <div className="rfox-modal__footer">
-                <Button>{ cancelText }</Button>
-                <Button
-                  type={ okType }>
-                  { okText }
-                </Button>
+                { footer !== undefined ? footer : (
+                    <React.Fragment>
+                      <Button onClick={onCancel}>{ cancelText }</Button>
+                      <Button
+                        type={ okType }
+                        onClick={onOk}>
+                        { okText }
+                      </Button>
+                    </React.Fragment>
+                  )
+                }
               </div>
             </div>
           </div>
         </React.Fragment>
-      ), this.el)
+      ), this.el) : null
     )
   }
 }
