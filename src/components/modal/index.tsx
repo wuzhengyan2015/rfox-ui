@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import cx from 'classnames'
 import Button from '../button'
 import Icon from '../icon'
+import Loading from './loading'
 import './styles/style.scss'
 
 export interface IModalProp {
@@ -162,8 +163,10 @@ class Modal extends Component<IModalProp, IModalState> {
                     <React.Fragment>
                       <Button onClick={onCancel}>{ cancelText }</Button>
                       <Button
+                        className={cx({ 'rfox-btn__mask': confirmLoading })}
                         type={ okType }
                         onClick={onOk}>
+                        { confirmLoading ? <Loading /> : null }
                         { okText }
                       </Button>
                     </React.Fragment>

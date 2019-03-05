@@ -14,6 +14,7 @@ ReactDOM.render(
         <Modal
             closable={true}
             title="Basic Modal"
+            confirmLoading
             style={{ top: '200px' }}
         >
             modal components

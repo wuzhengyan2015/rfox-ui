@@ -113,3 +113,19 @@
         margin-left: 8px;
     }
 }
+
+.rfox-btn__mask {
+    position: relative;
+    &:after {
+        content: '';
+        position: absolute;
+        left: -1px;
+        right: -1px;
+        top: -1px;
+        bottom: -1px;
+        opacity: 0.3;
+        background-color: #fff;
+        z-index: 1;
+        transition: opacity 0.2s;
+    }
+}

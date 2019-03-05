@@ -18,6 +18,7 @@ export interface IButtonProps {
     block?: boolean;
     size?: string;  // default small large
     shape?: string;
+    className?: string;
 }
 
 class Button extends Component<IButtonProps> {
@@ -31,9 +32,10 @@ class Button extends Component<IButtonProps> {
   }
   render() {
     const { 
-      children, htmlType, type, size, disabled, block, onClick, shape, href, target
+      children, htmlType, type, size, disabled, block, onClick, shape, href, target, className
     } = this.props
-    const className = cx('rfox-btn', {
+    const btnClassName = cx('rfox-btn', {
+      [className]: !!className,
       [`rfox-btn-${type}`]: !!type,
       [`rfox-btn-${sizeMap.get(size)}`]: !!sizeMap.get(size),
       'rfox-btn-disabled': disabled,
@@ -43,14 +45,14 @@ class Button extends Component<IButtonProps> {
     return (
       !!href ?
         <a
-          className={ className }
+          className={ btnClassName }
           href={ href }
           target={target}
           onClick={ onClick }>
           { children }
         </a> 
         : <button
-          className={ className }
+          className={ btnClassName }
           type={ htmlType }
           onClick={ onClick }>
           { children }
