@@ -5,7 +5,8 @@
 
 ## Todo
 + Modal (unmountNode won't trigger componentWillUnmout?) 
-confirmLoading
+Imperative
+trasition
 + layout
 
 ## issue

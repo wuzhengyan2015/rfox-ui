@@ -12,6 +12,8 @@ const TabPane = Tabs.TabPane;
 ReactDOM.render(
     <div>
         <Modal
+            destroyOnClose={true}
+            visible={false}
             closable={true}
             title="Basic Modal"
             confirmLoading
