@@ -70,17 +70,25 @@ class Dialog extends Component<IDialogProp, IDialogState> {
   }
 
   closeDialog = () => {
-    const { afterClose } = this.props
     this.setState({
       visible: false,
     })
-    afterClose()
+  }
+
+  componentWillUnmount() {
+    this.props.afterClose()
   }
 
   handleMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       this.closeDialog()
     }
+  }
+
+  handleCancelClick = (e) => {
+    const { onCancel } = this.props
+    this.closeDialog()
+    onCancel(e)
   }
 
   render() {
@@ -99,7 +107,6 @@ class Dialog extends Component<IDialogProp, IDialogState> {
       closable,
       destroyOnClose,
       zIndex,
-      onCancel,
       onOk,
       wrapClassName,
       bodyStyle,
@@ -151,7 +158,7 @@ class Dialog extends Component<IDialogProp, IDialogState> {
               <div className="rfox-modal__footer">
                 { footer !== undefined ? footer : (
                     <React.Fragment>
-                      <Button onClick={onCancel}>{ cancelText }</Button>
+                      <Button onClick={this.handleCancelClick}>{ cancelText }</Button>
                       <Button
                         className={cx({ 'rfox-btn__mask': confirmLoading })}
                         type={ okType }
@@ -166,7 +173,7 @@ class Dialog extends Component<IDialogProp, IDialogState> {
             </div>
           </div>
         </div>
-      ): null
+      ) : null
     )
   }
 }
