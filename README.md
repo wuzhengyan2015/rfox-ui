@@ -5,8 +5,8 @@
 
 ## Todo
 + Modal (unmountNode won't trigger componentWillUnmout?) 
-Imperative
 trasition
+
 + layout
 
 ## issue
