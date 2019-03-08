@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Dialog, { IDialogProp } from './Dialog'
+import './styles/style.scss'
 
 class Modal extends Component<IDialogProp> {
     static info: Function
+    static success: Function
+    static error: Function
+    static warn: Function
     private el: HTMLElement
 
     constructor(props) {
@@ -27,7 +31,13 @@ class Modal extends Component<IDialogProp> {
 const confirm = (config) => {
     let el = document.createElement('div')
     document.body.appendChild(el)
-    let currentConfig = { ...config, visible: true }
+    let currentConfig = { 
+        ...config, 
+        onOk() {
+            config.onOK && config.onOK()
+            close()
+        }
+    }
 
     function close() {
         const unmountResult = ReactDOM.unmountComponentAtNode(el);
@@ -35,7 +45,6 @@ const confirm = (config) => {
             el.parentNode.removeChild(el);
             el = null
         }
-        // can't no close
         if (config.onCancel) {
             config.onCancel()
         }
@@ -61,12 +70,43 @@ const confirm = (config) => {
     }
 }
 
-Modal.info = (config) => {
-    return confirm(config)
+const baseQuickModalConfig = {
+    width: 416,
+    closable: false,
+    wrapClassName: 'rfox-modal--simple'
+
 }
 
-Modal.info()
+Modal.info = (config: IDialogProp) => {
+    return confirm({ 
+        ...config,
+        ...baseQuickModalConfig,
+        iconType: 'icon-info-circle',
+    })
+}
 
+Modal.success = (config: IDialogProp) => {
+    return confirm({ 
+        ...config,
+        ...baseQuickModalConfig,
+        iconType: 'icon-check-circle',
+    })
+}
 
+Modal.error = (config: IDialogProp) => {
+    return confirm({ 
+        ...config,
+        ...baseQuickModalConfig,
+        iconType: 'icon-close-circle',
+    })
+}
+
+Modal.warn = (config: IDialogProp) => {
+    return confirm({ 
+        ...config,
+        ...baseQuickModalConfig,
+        iconType: 'icon-warning-circle',
+    })
+}
 
 export default Modal
