@@ -9,16 +9,43 @@ import Tabs from './components/tabs'
 
 const TabPane = Tabs.TabPane;
 
+class Demo extends React.Component {
+    state = {
+        visible: false
+    }
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                visible: true
+            })
+        }, 1000)
+    }
+    handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    }
+    render() {
+        const { visible } = this.state
+        return (
+            <Modal
+                visible={visible}
+                closable={true}
+                title="Basic Modal"
+                confirmLoading
+                onCancel={this.handleCancel}
+                style={{ top: '200px' }}
+            >
+                modal components
+            </Modal>
+        )
+    }
+}
+
 ReactDOM.render(
     <div>
-        <Modal
-            closable={true}
-            title="Basic Modal"
-            confirmLoading
-            style={{ top: '200px' }}
-        >
-            modal components
-        </Modal>
+        <Demo />
         <Icon type="icon-cloud-upload"/>
         <Rate character={<Icon type='icon-heart-fill'/>} activeColor="#e02d2d" />
         <Tabs defaultActiveKey="1">

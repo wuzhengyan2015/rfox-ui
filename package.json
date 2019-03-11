@@ -45,7 +45,8 @@
     "classnames": "^2.2.6",
     "kinetic": "^5.2.0",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "react-transition-group": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

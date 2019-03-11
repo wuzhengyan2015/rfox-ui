@@ -3,6 +3,7 @@ import cx from 'classnames'
 import Button from '../button'
 import Icon from '../icon'
 import Loading from './loading'
+import { CSSTransition } from 'react-transition-group'
 
 export interface IDialogProp {
   afterClose?: () => {};
@@ -27,8 +28,8 @@ export interface IDialogProp {
   children?: any;
   content?: any;
   iconType?: string;
-  onCancel?: (event) => {},
-  onOk?: (event) => {},
+  onCancel?: (event) => void,
+  onOk?: (event) => void,
 }
 
 interface IDialogState {
@@ -131,64 +132,69 @@ class Dialog extends Component<IDialogProp, IDialogState> {
               'rfox-modal__mask--hidden': !visible || !mask
             })}
             style={{ zIndex, ...maskStyle }}
-            ></div>
-          <div
-            className={cx('rfox-modal__wrapper', {
-              'rfox-modal__wrapper--hidden': !visible,
-              [wrapClassName]: !!wrapClassName,
-            })}
-            style={{ zIndex }}
-            onClick={maskClosable ? this.handleMaskClick : undefined}
-          >
+          ></div>
+          <CSSTransition 
+              in={visible}
+              timeout={300}
+              classNames="modal">
             <div
-              className={cx('rfox-modal', {
-                'rfox-modal--center': centered
+              className={cx('rfox-modal__wrapper', {
+                'rfox-modal__wrapper--hidden': !visible,
+                [wrapClassName]: !!wrapClassName,
               })}
-              style={{ width, ...style }}>
-              <button className={cx('rfox-modal__close', {
-                  'rfox-modal__close--hidden': !closable
+              style={{ zIndex }}
+              onClick={maskClosable ? this.handleMaskClick : undefined}
+            >
+              <div
+                className={cx('rfox-modal', {
+                  'rfox-modal--center': centered
                 })}
-                onClick={this.handleCancelClick}
-              >
-                <span className="rfox-modal__close-x">
-                  <Icon type="icon-close" color="#8c8c8c" size={16} />
-                </span>
-              </button>
-              <div className="rfox-modal__header">
-                <div className="rfox-modal__title">
-                  { title }
+                style={{ width, ...style }}>
+                <button className={cx('rfox-modal__close', {
+                    'rfox-modal__close--hidden': !closable
+                  })}
+                  onClick={this.handleCancelClick}
+                >
+                  <span className="rfox-modal__close-x">
+                    <Icon type="icon-close" color="#8c8c8c" size={16} />
+                  </span>
+                </button>
+                <div className="rfox-modal__header">
+                  <div className="rfox-modal__title">
+                    { title }
+                  </div>
+                </div>
+                <div
+                  className="rfox-modal__body"
+                  style={ bodyStyle }
+                >
+                  { isSimpleDialog ? (
+                      <React.Fragment>
+                        <Icon type={iconType} />
+                        <span className="rfox-modal__simple-title">{ title }</span>
+                        <div className="rfox-modal__simple-desc">{ content }</div>
+                        <Button type="primary" onClick={this.handleOkClick}>知道了</Button>
+                      </React.Fragment>
+                    ) : children }
+                </div>
+                <div className="rfox-modal__footer">
+                  { footer !== undefined ? footer : (
+                      <React.Fragment>
+                        <Button onClick={this.handleCancelClick}>{ cancelText }</Button>
+                        <Button
+                          className={cx({ 'rfox-btn__mask': confirmLoading })}
+                          type={ okType }
+                          onClick={this.handleOkClick}>
+                          { confirmLoading ? <Loading /> : null }
+                          { okText }
+                        </Button>
+                      </React.Fragment>
+                    )
+                  }
                 </div>
               </div>
-              <div
-                className="rfox-modal__body"
-                style={ bodyStyle }
-              >
-                { isSimpleDialog ? (
-                    <React.Fragment>
-                      <Icon type={iconType} />
-                      <span className="rfox-modal__simple-title">{ title }</span>
-                      <div className="rfox-modal__simple-desc">{ content }</div>
-                      <Button type="primary" onClick={this.handleOkClick}>知道了</Button>
-                    </React.Fragment>
-                  ) : children }
-              </div>
-              <div className="rfox-modal__footer">
-                { footer !== undefined ? footer : (
-                    <React.Fragment>
-                      <Button onClick={this.handleCancelClick}>{ cancelText }</Button>
-                      <Button
-                        className={cx({ 'rfox-btn__mask': confirmLoading })}
-                        type={ okType }
-                        onClick={this.handleOkClick}>
-                        { confirmLoading ? <Loading /> : null }
-                        { okText }
-                      </Button>
-                    </React.Fragment>
-                  )
-                }
-              </div>
             </div>
-          </div>
+          </CSSTransition>
         </div>
       ) : null
     )
