@@ -34,6 +34,7 @@ export interface IDialogProp {
 
 interface IDialogState {
   visible: boolean;
+  transition: boolean;
 }
 
 class Dialog extends Component<IDialogProp, IDialogState> {
@@ -56,7 +57,8 @@ class Dialog extends Component<IDialogProp, IDialogState> {
   constructor(props) {
     super(props)
     this.state = {
-      visible: true
+      visible: true,
+      transition: false,
     }
   }
 
@@ -78,6 +80,24 @@ class Dialog extends Component<IDialogProp, IDialogState> {
 
   componentWillUnmount() {
     this.props.afterClose()
+  }
+
+  componentDidMount() {
+    const { visible, transition } = this.state
+    if (transition !== visible) {
+      this.setState({
+        transition: visible
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    const { visible, transition } = this.state
+    if (transition !== visible) {
+      this.setState({
+        transition: visible
+      })
+    }
   }
 
   handleMaskClick = (e) => {
@@ -121,25 +141,30 @@ class Dialog extends Component<IDialogProp, IDialogState> {
       content,
       iconType,
     } = this.props
-    const { visible } = this.state;
+    const { visible, transition } = this.state;
     const isSimpleDialog = wrapClassName && wrapClassName.includes('rfox-modal--simple');
+    console.log(visible, transition);
 
     return (
       (visible || !destroyOnClose) ? (
         <div>
-          <div
-            className={cx('rfox-modal__mask', {
-              'rfox-modal__mask--hidden': !visible || !mask
-            })}
-            style={{ zIndex, ...maskStyle }}
-          ></div>
           <CSSTransition 
-              in={visible}
+              in={transition}
+              timeout={300}
+              classNames="modal-mask">
+            <div
+              className={cx('rfox-modal__mask', {
+                'rfox-modal__mask--hidden': !mask
+              })}
+              style={{ zIndex, ...maskStyle }}
+            ></div>
+          </CSSTransition>
+          <CSSTransition 
+              in={transition}
               timeout={300}
               classNames="modal">
             <div
               className={cx('rfox-modal__wrapper', {
-                'rfox-modal__wrapper--hidden': !visible,
                 [wrapClassName]: !!wrapClassName,
               })}
               style={{ zIndex }}

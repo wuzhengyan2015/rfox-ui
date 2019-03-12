@@ -5,7 +5,7 @@
 
 ## Todo
 + Modal (unmountNode won't trigger componentWillUnmout?) 
-trasition
+test
 
 + layout
 

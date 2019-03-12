@@ -9,6 +9,17 @@ import Tabs from './components/tabs'
 
 const TabPane = Tabs.TabPane;
 
+// Modal.info({
+//     title: 'This is a notification message',
+//     content: (
+//       <div>
+//         <p>some messages...some messages...</p>
+//         <p>some messages...some messages...</p>
+//       </div>
+//     ),
+//     onOk() {},
+// })
+
 class Demo extends React.Component {
     state = {
         visible: false

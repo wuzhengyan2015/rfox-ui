@@ -43,7 +43,6 @@ class Rate extends Component<IRateProps, IRateState> {
   }
   static getDerivedStateFromProps(props) {
     const { value } = props
-    console.log(value);
     if (value !== undefined) {
       return {
         value

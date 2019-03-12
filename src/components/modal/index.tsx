@@ -29,10 +29,12 @@ class Modal extends Component<IDialogProp> {
 }
 
 const confirm = (config) => {
+    const trasitionTime = 260
     let el = document.createElement('div')
     document.body.appendChild(el)
     let currentConfig = { 
-        ...config, 
+        ...config,
+        visible: true,
         onOk() {
             config.onOK && config.onOK()
             close()
@@ -40,14 +42,21 @@ const confirm = (config) => {
     }
 
     function close() {
-        const unmountResult = ReactDOM.unmountComponentAtNode(el);
-        if (unmountResult && el.parentNode) {
-            el.parentNode.removeChild(el);
-            el = null
+        currentConfig = {
+            ...currentConfig,
+            visible: false
         }
-        if (config.onCancel) {
-            config.onCancel()
-        }
+        render(currentConfig);
+        setTimeout(() => {
+            const unmountResult = ReactDOM.unmountComponentAtNode(el);
+            if (unmountResult && el.parentNode) {
+                el.parentNode.removeChild(el);
+                el = null
+            }
+            if (config.onCancel) {
+                config.onCancel()
+            }
+        }, trasitionTime)
     }
 
     function update(newConfig) {
