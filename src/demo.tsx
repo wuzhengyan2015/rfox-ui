@@ -2,61 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './assets/styles/reset.css'
 import './assets/styles/global.css'
-import Modal from './components/modal'
+import { ModalMethod, NormalModal, UncontrollerModal } from './components/modal/demo'
 import Rate from './components/rate'
 import Icon from './components/icon'
 import Tabs from './components/tabs'
 
 const TabPane = Tabs.TabPane;
 
-// Modal.info({
-//     title: 'This is a notification message',
-//     content: (
-//       <div>
-//         <p>some messages...some messages...</p>
-//         <p>some messages...some messages...</p>
-//       </div>
-//     ),
-//     onOk() {},
-// })
-
-class Demo extends React.Component {
-    state = {
-        visible: false
-    }
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                visible: true
-            })
-        }, 1000)
-    }
-    handleCancel = (e) => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
-    }
-    render() {
-        const { visible } = this.state
-        return (
-            <Modal
-                visible={visible}
-                closable={true}
-                title="Basic Modal"
-                confirmLoading
-                onCancel={this.handleCancel}
-                style={{ top: '200px' }}
-            >
-                modal components
-            </Modal>
-        )
-    }
-}
-
 ReactDOM.render(
     <div>
-        <Demo />
+        <UncontrollerModal />
         <Icon type="icon-cloud-upload"/>
         <Rate character={<Icon type='icon-heart-fill'/>} activeColor="#e02d2d" />
         <Tabs defaultActiveKey="1">

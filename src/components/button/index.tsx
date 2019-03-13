@@ -13,7 +13,7 @@ export interface IButtonProps {
     href?: string;
     htmlType?: string;
     target?: string;
-    type?: string;    // primary dashed danger
+    type?: string;    // primary dash danger
     onClick?: (event) => void;
     block?: boolean;
     size?: string;  // default small large

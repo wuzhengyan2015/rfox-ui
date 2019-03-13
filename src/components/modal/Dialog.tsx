@@ -72,10 +72,12 @@ class Dialog extends Component<IDialogProp, IDialogState> {
     return null
   }
 
-  closeDialog = () => {
+  closeDialog = (e) => {
+    const { onCancel } = this.props
     this.setState({
       visible: false,
     })
+    onCancel(e)
   }
 
   componentWillUnmount() {
@@ -102,19 +104,19 @@ class Dialog extends Component<IDialogProp, IDialogState> {
 
   handleMaskClick = (e) => {
     if (e.target === e.currentTarget) {
-      this.closeDialog()
+      this.closeDialog(e)
     }
   }
 
   handleCancelClick = (e) => {
-    const { onCancel } = this.props
-    this.closeDialog()
-    onCancel(e)
+    this.closeDialog(e)
   }
 
   handleOkClick = (e) => {
     const { onOk } = this.props
-    this.closeDialog()
+    this.setState({
+      visible: false,
+    })
     onOk(e)
   }
 
@@ -143,7 +145,6 @@ class Dialog extends Component<IDialogProp, IDialogState> {
     } = this.props
     const { visible, transition } = this.state;
     const isSimpleDialog = wrapClassName && wrapClassName.includes('rfox-modal--simple');
-    console.log(visible, transition);
 
     return (
       (visible || !destroyOnClose) ? (
