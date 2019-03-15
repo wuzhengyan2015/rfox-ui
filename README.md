@@ -5,7 +5,6 @@
 
 ## Todo
 + Modal 
-    + test
     + unmountNode won't trigger componentWillUnmout?)
     + getDerivedStateFromProps
 
