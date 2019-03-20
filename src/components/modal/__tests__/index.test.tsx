@@ -28,4 +28,40 @@ describe('Modal tests', () => {
         expect(customTree.contains(footer)).toBeTruthy()
         expect(customTree.find('.rfox-btn').length).toBe(0)
     })
+    it('render style props', () => {
+        const tree = mount(<Modal
+            style={{ fontSize: '20px' }}
+            maskStyle={{ background: 'rgba(0, 0, 0, 0.6)' }}
+            bodyStyle={{ color: '#f22' }}
+            width={600}
+            zIndex={999}
+        ></Modal>)
+        expect(tree.find('.rfox-modal__mask').prop('style')).toEqual({
+            background: 'rgba(0, 0, 0, 0.6)',
+            zIndex: 999
+        })
+        expect(tree.find('.rfox-modal').prop('style')).toEqual({
+            fontSize: '20px',
+            width: 600
+        })
+        expect(tree.find('.rfox-modal__body').prop('style').color).toBe('#f22')
+        expect(tree.find('.rfox-modal__wrapper').prop('style').zIndex).toBe(999)
+    })
+    it('add wrapClassName correctly', () => {
+        const tree = mount(<Modal
+            wrapClassName="unit-test"
+        ></Modal>)
+        expect(tree.find('.rfox-modal__wrapper').prop('className')).toEqual(expect.stringContaining('unit-test'))
+    })
+    it('render footer button correctly', () => {
+        const tree = mount(<Modal
+            okText="Okay"
+            cancelText="Cancel"
+        ></Modal>)
+        const btns = tree.find('.rfox-modal__footer').find('.rfox-btn')
+        expect(btns.at(0).text()).toBe('Cancel')
+        expect(btns.at(1).text()).toBe('Okay')
+        tree.setProps({ okType: 'dash' })
+        expect(tree.find('.rfox-modal__footer').find('.rfox-btn').at(1).prop('className')).toEqual(expect.stringContaining('rfox-btn-dash'));
+    })
 })
