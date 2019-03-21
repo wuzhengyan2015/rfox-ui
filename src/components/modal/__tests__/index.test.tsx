@@ -64,4 +64,14 @@ describe('Modal tests', () => {
         tree.setProps({ okType: 'dash' })
         expect(tree.find('.rfox-modal__footer').find('.rfox-btn').at(1).prop('className')).toEqual(expect.stringContaining('rfox-btn-dash'));
     })
+    it('render correctly for close icon', () => {
+        const tree = mount(<Modal></Modal>)
+        const treeWithoutCloseIcon = mount(<Modal closable={false}></Modal>)
+        expect(tree.find('.rfox-modal__close').exists()).toBeTruthy()
+        expect(treeWithoutCloseIcon.find('.rfox-modal__close').prop('className')).toEqual(expect.stringContaining('rfox-modal__close--hidden'))
+    })
+    it('render modal position according to centered prop', () => {
+        const tree = mount(<Modal centered={true}></Modal>)
+        expect(tree.find('.rfox-modal').prop('className')).toEqual(expect.stringContaining('rfox-modal--center'))
+    })
 })
