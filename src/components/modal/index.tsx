@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom'
 import Dialog, { IDialogProp } from './Dialog'
 import './styles/style.scss'
 
+type quickModal = (IDialogProp) => ({
+    update: (IDialogProp) => void
+    destory: () => void
+})
+
 class Modal extends Component<IDialogProp> {
-    static info: Function
-    static success: Function
-    static error: Function
-    static warn: Function
+    static info: quickModal
+    static success: quickModal
+    static error: quickModal
+    static warn: quickModal
     private el: HTMLElement
 
     constructor(props) {
@@ -36,7 +41,9 @@ const confirm = (config) => {
         ...config,
         visible: true,
         onOk() {
-            config.onOK && config.onOK()
+            if (config.onOK) {
+                config.onOK()
+            }
             close()
         }
     }

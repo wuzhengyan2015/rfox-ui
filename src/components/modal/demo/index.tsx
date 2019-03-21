@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Modal from '../index'
 
+/* tslint:disable  */
 class ModalMethod extends Component {
     componentDidMount() {
         Modal.info({
@@ -19,6 +20,7 @@ class ModalMethod extends Component {
     }
 }
 
+/* tslint:disable  */
 class NormalModal extends Component {
     state = {
         visible: true
@@ -53,6 +55,7 @@ class NormalModal extends Component {
     }
 }
 
+/* tslint:disable  */
 class UncontrollerModal extends Component {
     handleCancel = () => {
         console.log('Cancel')
