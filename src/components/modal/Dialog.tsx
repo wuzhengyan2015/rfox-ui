@@ -169,7 +169,7 @@ class Dialog extends Component<IDialogProp, IDialogState> {
                 [wrapClassName]: !!wrapClassName,
               })}
               style={{ zIndex }}
-              onClick={maskClosable ? this.handleMaskClick : undefined}
+              onClick={maskClosable && mask ? this.handleMaskClick : undefined}
             >
               <div
                 className={cx('rfox-modal', {

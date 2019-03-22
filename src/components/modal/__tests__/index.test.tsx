@@ -1,6 +1,7 @@
 import { mount, configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Modal from '../index'
+import Dialog from '../Dialog'
 import React from 'react'
 
 configure({ adapter: new Adapter() })
@@ -73,5 +74,36 @@ describe('Modal tests', () => {
     it('render modal position according to centered prop', () => {
         const tree = mount(<Modal centered={true}></Modal>)
         expect(tree.find('.rfox-modal').prop('className')).toEqual(expect.stringContaining('rfox-modal--center'))
+    })
+    it('render confirmLoading correctly', () => {
+        const tree = mount(<Modal confirmLoading={true}></Modal>)
+        expect(tree.find('.lds-ring').exists()).toBeTruthy()
+    })
+    it('render mask correctly and maskClosable test', () => {
+        const tree = mount(<Modal></Modal>)
+        const unClosableTree = mount(<Modal maskClosable={false}></Modal>)
+        const treeWithoutMask = mount(<Modal mask={false}></Modal>)
+        expect(tree.find('.rfox-modal__mask').exists()).toBeTruthy()
+        expect(treeWithoutMask.find('.rfox-modal__mask').prop('className')).toEqual(expect.stringContaining('rfox-modal__mask--hidden'))
+        tree.find('.rfox-modal__wrapper').simulate('click')
+        expect(tree.find(Dialog).state('visible')).toBeFalsy()
+        unClosableTree.find('.rfox-modal__wrapper').simulate('click')
+        expect(unClosableTree.find(Dialog).state('visible')).toBeTruthy()
+    })
+    it('test destroyOnClose prop', () => {
+        const tree = mount(<Modal visible={false}></Modal>)
+        expect(tree.find('.rfox-modal').exists()).toBeTruthy()
+        tree.setProps({ destroyOnClose: true })
+        expect(tree.find('.rfox-modal').exists()).toBeFalsy()
+    })
+    it('test visible prop', () => {
+        const tree = mount(<Modal visible={false}></Modal>)
+        
+    })
+    it('test event trigger', () => {
+
+    })
+    it('test simple modal', () => {
+        
     })
 })
