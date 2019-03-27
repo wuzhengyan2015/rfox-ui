@@ -41,8 +41,8 @@ const confirm = (config) => {
         ...config,
         visible: true,
         onOk() {
-            if (config.onOK) {
-                config.onOK()
+            if (config.onOk) {
+                config.onOk()
             }
             close()
         }

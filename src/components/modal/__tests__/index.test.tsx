@@ -98,12 +98,53 @@ describe('Modal tests', () => {
     })
     it('test visible prop', () => {
         const tree = mount(<Modal visible={false}></Modal>)
-        
+        expect(tree.find(Dialog).state('transition')).toBeFalsy()
+        tree.setProps({ visible: true })
+        expect(tree.find(Dialog).state('transition')).toBeTruthy()
     })
     it('test event trigger', () => {
-
+        const afterClose = jest.fn()
+        const onCancel = jest.fn()
+        const onOk = jest.fn()
+        const okTree = mount(<Modal afterClose={afterClose} onOk={onOk}></Modal>)
+        okTree.find('.rfox-modal__footer').find('.rfox-btn').at(1).simulate('click')
+        expect(onOk).toHaveBeenCalled()
+        okTree.unmount()
+        expect(afterClose).toHaveBeenCalled()
+        const cancelTree = mount(<Modal afterClose={afterClose} onCancel={onCancel}></Modal>)
+        cancelTree.find('.rfox-modal__footer').find('.rfox-btn').at(0).simulate('click')
+        expect(onCancel).toHaveBeenCalled()
+        cancelTree.unmount()
+        expect(afterClose).toHaveBeenCalled()
     })
-    it('test simple modal', () => {
-        
+    it('test simple modal', (done) => {
+        const onOk = jest.fn();
+        const onCancel = jest.fn();
+        const modal = Modal.info({
+            title: 'This is a notification message',
+            content: 'content',
+            onOk: onOk,
+        })
+        const successModal = Modal.success({ onCancel: onCancel})
+        const errorModal = Modal.error({})
+        const warnModal = Modal.warn({})
+        expect(document.body.getElementsByClassName('rfox-modal__simple-title')[0].innerHTML).toBe('This is a notification message')
+        expect(document.body.getElementsByClassName('rfox-modal__simple-desc')[0].innerHTML).toBe('content')
+        expect(document.body.getElementsByClassName('icon-info-circle').length).toBe(1)
+        expect(document.body.getElementsByClassName('icon-check-circle').length).toBe(1)
+        expect(document.body.getElementsByClassName('icon-close-circle').length).toBe(1)
+        expect(document.body.getElementsByClassName('icon-warning-circle').length).toBe(1)
+        ;(document.querySelector('.rfox-modal--simple .rfox-btn') as HTMLButtonElement).click()
+        expect(onOk).toHaveBeenCalled()
+        modal.update({ title: 'simple title' })
+        expect(document.body.getElementsByClassName('rfox-modal__simple-title')[0].innerHTML).toBe('simple title')
+        successModal.destory()
+        errorModal.destory()
+        warnModal.destory()
+        setTimeout(() => {
+            expect(document.body.getElementsByClassName('rfox-modal__simple-title').length).toBe(0)
+            expect(onCancel).toHaveBeenCalled()
+            done()
+        }, 310)
     })
 })

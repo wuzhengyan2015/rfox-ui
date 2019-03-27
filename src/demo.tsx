@@ -11,7 +11,7 @@ const TabPane = Tabs.TabPane;
 
 ReactDOM.render(
     <div>
-        <UncontrollerModal />
+        <ModalMethod />
         <Icon type="icon-cloud-upload"/>
         <Rate character={<Icon type='icon-heart-fill'/>} activeColor="#e02d2d" />
         <Tabs defaultActiveKey="1">
