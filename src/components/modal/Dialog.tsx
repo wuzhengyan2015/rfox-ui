@@ -74,9 +74,7 @@ class Dialog extends Component<IDialogProp, IDialogState> {
 
   closeDialog = (e) => {
     const { onCancel } = this.props
-    this.setState({
-      visible: false,
-    })
+    this.changeVisible(false)
     onCancel(e)
   }
 
@@ -114,10 +112,16 @@ class Dialog extends Component<IDialogProp, IDialogState> {
 
   handleOkClick = (e) => {
     const { onOk } = this.props
-    this.setState({
-      visible: false,
-    })
+    this.changeVisible(false)
     onOk(e)
+  }
+
+  changeVisible = (visible) => {
+    if (!('visible' in this.props)) {
+      this.setState({
+        visible
+      });
+    }
   }
 
   render() {

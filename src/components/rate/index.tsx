@@ -51,7 +51,7 @@ class Rate extends Component<IRateProps, IRateState> {
     return null;
   }
   handleItemClick = (event) => {
-    const { onChange, disabled, allClear } = this.props
+    const { disabled, allClear } = this.props
     const { value: currentValue } = this.state
     if (disabled) {
       return
@@ -61,10 +61,16 @@ class Rate extends Component<IRateProps, IRateState> {
     if (allClear && value === currentValue) {
       value = undefined
     }
-    this.setState({
-      value
-    })
-    onChange(value)
+    this.changeValue(value)
+  }
+  changeValue = (value) => {
+    const { onChange } = this.props;
+    if (!('value' in this.props)) {
+      this.setState({
+        value,
+      });
+    }
+    onChange(value);
   }
   handleMouseOut = () => {
     const { disabled } = this.props

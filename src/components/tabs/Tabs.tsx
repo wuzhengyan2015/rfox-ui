@@ -35,12 +35,18 @@ class Tabs extends Component<ITabsProps, ITabsState> {
   }
 
   handleTabClick = (event) => {
-    const { onChange } = this.props
     const activeKey = event.target.dataset.key
-    this.setState({
-      activeKey
-    })
-    onChange(activeKey)
+    this.changeActiveKey(activeKey)
+  }
+
+  changeActiveKey = (activeKey) => {
+    const { onChange } = this.props;
+    if (!('activeKey' in this.props)) {
+      this.setState({
+        activeKey,
+      });
+    }
+    onChange(activeKey);
   }
 
   isActiveKeyMatch = () => {

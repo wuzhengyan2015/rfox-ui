@@ -44,6 +44,7 @@ class NormalModal extends Component {
                 closable={true}
                 okText="同意"
                 title="Basic Modal"
+                destroyOnClose
                 onCancel={this.handleCancel}
                 onOk={this.handleOk}
                 okType="dash"

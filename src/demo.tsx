@@ -11,9 +11,9 @@ const TabPane = Tabs.TabPane;
 
 ReactDOM.render(
     <div>
-        <ModalMethod />
+        {/* <NormalModal /> */}
         <Icon type="icon-cloud-upload"/>
-        <Rate character={<Icon type='icon-heart-fill'/>} activeColor="#e02d2d" />
+        <Rate character={<Icon type='icon-heart-fill'/>} activeColor="#e02d2d"/>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Tab 1" key="1">Content of Tab Pane 1</TabPane>
           <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
