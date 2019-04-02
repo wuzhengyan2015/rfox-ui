@@ -1,4 +1,8 @@
 import React, { SFC } from 'react'
+import cx from 'classnames'
+import './styles/index.scss'
+
+const GRID_NUM = 24;
 
 interface IBaseColProps {
     offset?: number;
@@ -31,12 +35,38 @@ export interface IColProps extends IBaseColProps {
     xxl?: number | IBaseColProps;
 }
 
-const Row: SFC<IRowProps> = () => {
-    return <div></div>
+const Row: SFC<IRowProps> = (props) => {
+    const { children } = props
+    return (
+        <div className="rfox-row">
+            { children }
+        </div>
+    )
 }
 
-const Col: SFC<IColProps> = () => {
-    return <div></div>
+const Col: SFC<IColProps> = (props) => {
+    const {
+        children,
+        span,
+        offset,
+        pull,
+        push,
+        order
+    } = props
+    return (
+        <div
+            className={ cx(`rfox-col rfox-col-${span}`, {
+                [`rfox-col-offset-${offset}`]: !!offset,
+                [`rfox-col-push-${push}`]: !!push,
+                [`rfox-col-pull-${pull}`]: !!pull,
+            }) }
+            style={{  
+                order,
+            }}
+        >
+            { children }
+        </div>
+    )
 }
 
 const Grid = { Row, Col }

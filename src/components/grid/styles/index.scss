@@ -1,0 +1,38 @@
+$rows: 24;
+
+.rfox-row {
+    position: relative;
+    box-sizing: border-box;
+    &:before {
+        content: '';
+        display: table;
+    }
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+.rfox-col {
+    position: relative;
+    float: left;
+    padding: 5px 0;
+    box-sizing: border-box;
+    background: #00A0E9; //for demo
+}
+
+@for $i from 1 through $rows {
+    .rfox-col-#{$i} {
+        width: $i / $rows * 100%;
+    }
+    .rfox-col-offset-#{$i} {
+        margin-left: $i / $rows * 100%;
+    }
+    .rfox-col-push-#{$i} {
+        left: $i / $rows * 100%;
+    }
+    .rfox-col-pull-#{$i} {
+        right: $i / $rows * 100%;
+    }
+}

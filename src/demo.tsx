@@ -6,8 +6,10 @@ import { ModalMethod, NormalModal, UncontrollerModal } from './components/modal/
 import Rate from './components/rate'
 import Icon from './components/icon'
 import Tabs from './components/tabs'
+import Grid from './components/grid'
 
 const TabPane = Tabs.TabPane;
+const { Row, Col } = Grid
 
 ReactDOM.render(
     <div>
@@ -19,6 +21,24 @@ ReactDOM.render(
           <TabPane tab="Tab 2" key="2">Content of Tab Pane 2</TabPane>
           <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
         </Tabs>
+        <Row>
+          <Col span={12}>col-12</Col>
+          <Col span={12}>col-12</Col>
+        </Row>
+        <Row>
+          <Col span={8}>col-8</Col>
+          <Col span={8} offset={8}>col-8</Col>
+        </Row>
+        <Row>
+          <Col span={6}>col-6-1</Col>
+          <Col span={6}>col-6-2</Col>
+          <Col span={6}>col-6</Col>
+          <Col span={6}>col-6</Col>
+        </Row>
+        <Row>
+          <Col span={18} push={6}>col-18 col-push-6</Col>
+          <Col span={6} pull={18}>col-6 col-pull-18</Col>
+        </Row>
     </div>,
     document.getElementById('root')
 )
