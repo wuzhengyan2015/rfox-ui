@@ -2,8 +2,6 @@ import React, { SFC } from 'react'
 import cx from 'classnames'
 import './styles/index.scss'
 
-const GRID_NUM = 24;
-
 interface IBaseColProps {
     offset?: number;
     order?: number;
@@ -44,6 +42,23 @@ const Row: SFC<IRowProps> = (props) => {
     )
 }
 
+const getMediaClassName = (name: string, media: number | IBaseColProps) => {
+    if (media === undefined) {
+        return
+    }
+    if (typeof media === 'number') {
+        return `rfox-col-${name}-${media}`
+    } else {
+        const className = Object.keys(media).reduce((clazz, key) => {
+            if (key === 'span') {
+                return clazz + `rfox-col-${name}-${media[key]} `
+            }
+            return clazz + `rfox-col-${name}-${key}-${media[key]} `
+        }, '')
+        return className.trim()
+    }
+}
+
 const Col: SFC<IColProps> = (props) => {
     const {
         children,
@@ -51,15 +66,30 @@ const Col: SFC<IColProps> = (props) => {
         offset,
         pull,
         push,
-        order
+        order,
+        xs,
+        sm,
+        md,
+        lg,
+        xl,
+        xxl,
     } = props
+
     return (
         <div
-            className={ cx(`rfox-col rfox-col-${span}`, {
+            className={ cx(`rfox-col`, {
+                [`rfox-col-${span}`]: !!span,
                 [`rfox-col-offset-${offset}`]: !!offset,
                 [`rfox-col-push-${push}`]: !!push,
                 [`rfox-col-pull-${pull}`]: !!pull,
-            }) }
+            },
+                getMediaClassName('xs', xs), 
+                getMediaClassName('sm', sm), 
+                getMediaClassName('md', md), 
+                getMediaClassName('lg', lg), 
+                getMediaClassName('xl', xl), 
+                getMediaClassName('xxl', xxl), 
+            ) }
             style={{  
                 order,
             }}

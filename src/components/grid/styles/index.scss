@@ -22,6 +22,23 @@ $rows: 24;
     background: #00A0E9; //for demo
 }
 
+@mixin media-col ($size) {
+    @for $i from 1 through $rows {
+        .rfox-col-#{$size}-#{$i} {
+            width: $i / $rows * 100%;
+        }
+        .rfox-col-#{$size}-offset-#{$i} {
+            margin-left: $i / $rows * 100%;
+        }
+        .rfox-col-#{$size}-push-#{$i} {
+            left: $i / $rows * 100%;
+        }
+        .rfox-col-#{$size}-pull-#{$i} {
+            right: $i / $rows * 100%;
+        }
+    }
+}
+
 @for $i from 1 through $rows {
     .rfox-col-#{$i} {
         width: $i / $rows * 100%;
@@ -35,4 +52,27 @@ $rows: 24;
     .rfox-col-pull-#{$i} {
         right: $i / $rows * 100%;
     }
+}
+
+
+@include media-col(xs);
+
+@media screen and (min-width: 576px) {
+    @include media-col(sm)
+}
+
+@media screen and (min-width: 768px) {
+    @include media-col(md)
+}
+
+@media screen and (min-width: 992px) {
+    @include media-col(lg)
+}
+
+@media screen and (min-width: 1200px) {
+    @include media-col(xl)
+}
+
+@media screen and (min-width: 1600px) {
+    @include media-col(xxl)
 }

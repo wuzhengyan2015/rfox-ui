@@ -22,8 +22,9 @@ ReactDOM.render(
           <TabPane tab="Tab 3" key="3">Content of Tab Pane 3</TabPane>
         </Tabs>
         <Row>
-          <Col span={12}>col-12</Col>
-          <Col span={12}>col-12</Col>
+          <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>Col</Col>
+          <Col xs={{ span: 11, offset: 1 }} lg={{ span: 6, offset: 2 }}>Col</Col>
+          <Col xs={{ span: 5, offset: 1 }} lg={{ span: 6, offset: 2 }}>Col</Col>
         </Row>
         <Row>
           <Col span={8}>col-8</Col>
