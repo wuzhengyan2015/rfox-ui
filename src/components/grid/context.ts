@@ -1,8 +1,7 @@
 import React from 'react'
-import { gutterType } from './types'
 
 interface IContext {
-    gutter?: gutterType
+    gutter?: number;
 }
 
 const GridContext: React.Context<IContext> = React.createContext({})

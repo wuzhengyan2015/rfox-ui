@@ -30,11 +30,19 @@ ReactDOM.render(
           <Col span={8}>col-8</Col>
           <Col span={8} offset={8}>col-8</Col>
         </Row>
-        <Row>
-          <Col span={6}>col-6-1</Col>
-          <Col span={6}>col-6-2</Col>
-          <Col span={6}>col-6</Col>
-          <Col span={6}>col-6</Col>
+        <Row gutter={16}>
+          <Col className="gutter-row" span={6}>
+            <div className="gutter-box">col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div className="gutter-box">col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div className="gutter-box">col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div className="gutter-box">col-6</div>
+          </Col>
         </Row>
         <Row>
           <Col span={18} push={6}>col-18 col-push-6</Col>
