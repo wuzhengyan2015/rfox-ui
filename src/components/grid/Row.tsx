@@ -21,10 +21,10 @@ export interface IRowProps extends IGutterType {
 }
 
 interface IRowState {
-    size: string;
+    gutterSize: string;
 }
 
-function getSize(width, gutter) {
+function getGutterSize(width, gutter) {
     switch (true) {
         case width >= 1600 && !!gutter.xxl:
             return 'xxl'
@@ -47,12 +47,12 @@ class Row extends Component<IRowProps, IRowState> {
 
     constructor(props) {
         super(props)
-        let size
+        let gutterSize
         if (typeof props.gutter === 'object') {
-            size = getSize(window.innerWidth, props.gutter)
+            gutterSize = getGutterSize(window.innerWidth, props.gutter)
         }
         this.state = {
-            size,
+            gutterSize,
         }
         this.throttleUpdateScreen = throttle(this.updateScreen, 200)
     }
@@ -63,28 +63,28 @@ class Row extends Component<IRowProps, IRowState> {
         window.removeEventListener('resize', this.throttleUpdateScreen)
     }
     updateScreen = () => {
-        const { size } = this.state
+        const { gutterSize } = this.state
         const { gutter } = this.props
         if (typeof gutter !== 'object') {
             return;
         }
-        const newSize = getSize(window.innerWidth, gutter)
-        if (size !== newSize) {
+        const newGutterSize = getGutterSize(window.innerWidth, gutter)
+        if (gutterSize !== newGutterSize) {
             this.setState({
-                size: newSize
+                gutterSize: newGutterSize
             })
         }
     }
     getGutter = () => {
         const { gutter } = this.props
-        const { size } = this.state
+        const { gutterSize } = this.state
         if (!gutter) {
             return
         }
         if (typeof gutter === 'number') {
             return gutter
         } else {
-            return gutter[size]
+            return gutter[gutterSize]
         }
     }
     render() {
