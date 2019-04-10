@@ -14,6 +14,10 @@ $rows: 24;
     }
 }
 
+.rfox-row-flex {
+    display: flex
+}
+
 .rfox-col {
     position: relative;
     float: left;

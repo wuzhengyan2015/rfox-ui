@@ -30,7 +30,11 @@ ReactDOM.render(
           <Col span={8}>col-8</Col>
           <Col span={8} offset={8}>col-8</Col>
         </Row>
-        <Row gutter={16}>
+        <Row type="flex" justify="center" align="center">
+          <Col span={8}>col-8</Col>
+          <Col span={8}>col-8</Col>
+        </Row>
+        <Row gutter={{ xs: 8, sm: 16, md: 24}}>
           <Col className="gutter-row" span={6}>
             <div className="gutter-box">col-6</div>
           </Col>
