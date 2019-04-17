@@ -1,4 +1,4 @@
-import React, { FunctionComponent, CSSProperties } from 'react'
+import React, { SFC, CSSProperties } from 'react'
 import cx from 'classnames'
 import './styles/index.scss'
 
@@ -8,11 +8,11 @@ interface ILayoutProps {
     hasSider?: boolean;
 }
 
-const Layout: FunctionComponent<ILayoutProps> & {
-    Header: FunctionComponent<ILayoutProps>;
-    Content: FunctionComponent<ILayoutProps>;
-    Footer: FunctionComponent<ILayoutProps>;
-    Sider: FunctionComponent<ILayoutProps>;
+const Layout: SFC<ILayoutProps> & {
+    Header: SFC<ILayoutProps>;
+    Content: SFC<ILayoutProps>;
+    Footer: SFC<ILayoutProps>;
+    Sider: SFC<ILayoutProps>;
   } = (props) => {
     const { className, style, hasSider, children } = props
     return (
@@ -28,65 +28,22 @@ const Layout: FunctionComponent<ILayoutProps> & {
     )
 }
 
-const Header: FunctionComponent<ILayoutProps> = (props) => {
-    const { className, style, hasSider, children } = props
-    return (
-        <header
-            className={ cx('ant-layout-header', {
+function generateBasicLayout(suffixCls, tagName) {
+    return (props) => {
+        const { className, style, children } = props
+        return React.createElement(tagName, {
+            className: cx(`ant-layout-${suffixCls}`, {
                 [className]: !!className,
-                'ant-layout-has-sider': !!hasSider
-            }) }
-            style={style}
-        >
-            { children }
-        </header>
-    )
+            }),
+            style,
+        }, children);
+    }
 }
 
-const Content: FunctionComponent<ILayoutProps> = (props) => {
-    const { className, style, hasSider, children } = props
-    return (
-        <main
-            className={ cx('ant-layout-content', {
-                [className]: !!className,
-                'ant-layout-has-sider': !!hasSider
-            }) }
-            style={style}
-        >
-            { children }
-        </main>
-    )
-}
-
-const Footer: FunctionComponent<ILayoutProps> = (props) => {
-    const { className, style, hasSider, children } = props
-    return (
-        <footer
-            className={ cx('ant-layout-footer', {
-                [className]: !!className,
-                'ant-layout-has-sider': !!hasSider
-            }) }
-            style={style}
-        >
-            { children }
-        </footer>
-    )
-}
-
-const Sider: FunctionComponent<ILayoutProps> = (props) => {
-    const { className, style, hasSider, children } = props
-    return (
-        <aside
-            className={ cx('ant-layout-sider', {
-                [className]: !!className,
-                'ant-layout-has-sider': !!hasSider
-            }) }
-            style={style}
-        >
-            { children }
-        </aside>
-    )
-}
+const Header: SFC<ILayoutProps> = generateBasicLayout('header', 'header')
+const Content: SFC<ILayoutProps> = generateBasicLayout('content', 'main')
+const Footer: SFC<ILayoutProps> = generateBasicLayout('footer', 'footer')
+const Sider: SFC<ILayoutProps> = generateBasicLayout('sider', 'aside')
 
 Layout.Header = Header
 Layout.Content = Content
