@@ -1,5 +1,7 @@
-import React, { SFC, CSSProperties } from 'react'
+import React, { SFC, CSSProperties, Component } from 'react'
 import cx from 'classnames'
+import LayoutContext from './context'
+import Sider, { ISiderProps } from './Sider'
 import './styles/index.scss'
 
 interface ILayoutProps {
@@ -8,24 +10,48 @@ interface ILayoutProps {
     hasSider?: boolean;
 }
 
-const Layout: SFC<ILayoutProps> & {
-    Header: SFC<ILayoutProps>;
-    Content: SFC<ILayoutProps>;
-    Footer: SFC<ILayoutProps>;
-    Sider: SFC<ILayoutProps>;
-  } = (props) => {
-    const { className, style, hasSider, children } = props
-    return (
-        <section
-            className={ cx('ant-layout', {
-                [className]: !!className,
-                'ant-layout-has-sider': !!hasSider
-            }) }
-            style={style}
-        >
-            { children }
-        </section>
-    )
+interface ILayoutState {
+    siders: string[]
+}
+
+class Layout extends Component<ILayoutProps, ILayoutState> {
+    static Header: SFC<ILayoutProps>
+    static Content: SFC<ILayoutProps>
+    static Footer: SFC<ILayoutProps>
+    static Sider: any
+    state = {
+        siders: []
+    }
+    addSider = (id) => {
+        this.setState((state) => ({
+            siders: [...state.siders, id]
+        }))
+    }
+    removeSider = (id) => {
+        this.setState((state) => ({
+            siders: state.siders.filter((currentId) => currentId !== id)
+        }))
+    }
+    render() {
+        const { className, style, hasSider, children } = this.props
+        const { siders } = this.state
+        return (
+            <LayoutContext.Provider value={{ 
+                addSider: this.addSider,
+                removeSider: this.removeSider 
+            }}>
+                <section
+                    className={ cx('ant-layout', {
+                        [className]: !!className,
+                        'ant-layout-has-sider': typeof hasSider === 'boolean' ? hasSider : siders.length > 0,
+                    }) }
+                    style={style}
+                >
+                    { children }
+                </section>
+            </LayoutContext.Provider>
+        )
+    }
 }
 
 function generateBasicLayout(suffixCls, tagName) {
@@ -43,7 +69,6 @@ function generateBasicLayout(suffixCls, tagName) {
 const Header: SFC<ILayoutProps> = generateBasicLayout('header', 'header')
 const Content: SFC<ILayoutProps> = generateBasicLayout('content', 'main')
 const Footer: SFC<ILayoutProps> = generateBasicLayout('footer', 'footer')
-const Sider: SFC<ILayoutProps> = generateBasicLayout('sider', 'aside')
 
 Layout.Header = Header
 Layout.Content = Content

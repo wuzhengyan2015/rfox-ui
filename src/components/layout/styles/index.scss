@@ -5,6 +5,9 @@
     min-height: 0;
     background: #f0f2f5;
     box-sizing: border-box;
+    &.ant-layout-has-sider {
+        flex-direction: row;
+    }
     * {
         box-sizing: border-box;
     }
