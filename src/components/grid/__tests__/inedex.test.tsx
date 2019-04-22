@@ -7,6 +7,7 @@ configure({ adapter: new Adapter() })
 const { Row, Col } = Grid
 
 describe('Grid render', () => {
+  it('render correctly', () => {
     const tree = render(
         <div>
             <Row type="flex" justify="center" align="center">
@@ -28,4 +29,5 @@ describe('Grid render', () => {
         </div>
     )
     expect(tree).toMatchSnapshot()
+  })
 })
